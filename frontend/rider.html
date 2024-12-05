@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <title>AGII NG | Rider Registration</title>
+</head>
+<body style="background-color: #f8f9fa;">
+
+    <!----------------------- Main Container -------------------------->
+
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+
+        <!----------------------- Registration Box -------------------------->
+
+        <div class="row border rounded-4 p-4 bg-white shadow-lg" style="max-width: 900px;">
+
+            <!--------------------------- Left Box ----------------------------->
+
+            <div class="col-md-4 rounded-start d-flex flex-column justify-content-center align-items-center text-center" style="background-color: #1d8aff; color: #fff; padding: 30px;">
+                <img src="images/1.png" class="img-fluid mb-3" alt="Rider Logo" style="width: 150px;">
+                <h5 class="fw-bold mb-2">Join as a Rider</h5>
+                <p class="small mb-0">Become part of a trusted community of professional riders.</p>
+            </div>
+
+            <!--------------------------- Right Box ----------------------------->
+
+            <div class="col-md-8 p-4">
+                <h4 class="fw-bold text-dark mb-3">Rider Registration Form</h4>
+                <p class="small text-secondary">Please fill out the form below to register as a rider.</p>
+                
+                <form>
+                    <!---------- Personal Information Section ---------->
+                    <h6 class="fw-semibold text-primary mb-2">Personal Information</h6>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Full Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Driver’s License Details" required>
+                        </div>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control form-control-sm" placeholder="Address" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Telephone Number" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control form-control-sm" placeholder="Email" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="State of Origin" required>
+                        </div>
+                    </div>
+
+                    <!---------- Next of Kin Section ---------->
+                    <h6 class="fw-semibold text-primary mb-2">Next of Kin Details</h6>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Next of Kin" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Next of Kin's Address" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Next of Kin's Phone Number" required>
+                        </div>
+                    </div>
+
+                    <!---------- Vehicle Information Section ---------->
+                    <h6 class="fw-semibold text-primary mb-2">Vehicle Information</h6>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Car Plate Number" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Car Type" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control form-control-sm" placeholder="Referral Code (Optional)">
+                        </div>
+                        <div class="col-md-6">
+                            <input type="file" class="form-control form-control-sm" accept="image/*" required>
+                        </div>
+                    </div>
+
+                    <!---------- Submit Button ---------->
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-sm">Create Account</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

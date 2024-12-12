@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Session;
+use App\Models\State;
+use App\Models\Company;
+use App\Models\User;
+
 
 class ProfileController extends Controller
 {
@@ -18,8 +22,12 @@ class ProfileController extends Controller
 
     public function userProfile(){
 
+        $states = State::all();
+        $company = User::find(Auth::id())->company;
 
-        return view('profile.userprofile');
+        //return $company;
+
+        return view('profile.userprofile', compact('states','company'));
     }
 
 

@@ -17,7 +17,6 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('department_id')->nullable();
-            $table->unsignedBigInteger('file_id')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('houseNo')->nullable();
@@ -38,7 +37,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
+          
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
         });
     }

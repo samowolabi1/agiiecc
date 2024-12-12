@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Model\Company;
-class CompanySeeder extends Seeder
+use App\Models\Brand;
+
+class BrandSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +17,5 @@ class CompanySeeder extends Seeder
     {
         //
 
-        State::create([
-            'name' => 'Abuja',
-            'code'=> 'Abj', 
-            'active' => 'active']);
     }
 }

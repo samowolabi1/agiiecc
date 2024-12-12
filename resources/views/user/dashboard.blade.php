@@ -26,7 +26,7 @@
 <div style="height: 40px;"></div>
 
          <div class="row m-3">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
 
                                 <!-- Widget Category -->
             <div class="widget widget-category">

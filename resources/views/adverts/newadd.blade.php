@@ -14,7 +14,7 @@
                     <div class="media">
                         
                         <div class="media-body">
-                            <h2 class="media-heading">My Adverts </h2>
+                            <h2 class="media-heading">New Advert </h2>
                             <!-- <p>Created - 2 Years Ago || Last Login - 2 Days ago </p> -->
                         </div>
                     </div>
@@ -29,20 +29,7 @@
          <div class="row m-3">
                     <div class="col-md-2">
 
-                                <!-- Widget Category -->
-            <div class="widget widget-category">
-                <h4 class="widget-title"></h4>
-                <ul class="widget-category-list">
-                    <li><a href="{{route('new.advert')}}">New Advert</a>
-                    </li>
-                    <li><a href="#!">Running Adverts</a>
-                    </li>
-                    <li><a href="#!">All Adverts</a>
-                    </li>
-                    <li><a href="#!">Payments</a>
-                    </li>
-                </ul>
-            </div> <!-- End category  -->             
+                        
 
               
                 

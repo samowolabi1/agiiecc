@@ -16,6 +16,7 @@ use App\Models\Impend;
 use App\Models\Pensioner;
 use App\Models\Emergency;
 use App\Models\Sibling;
+use App\Models\Company;
 
 
 
@@ -50,10 +51,18 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
+
+  
     public function students()
     {
         return $this->hasMany(Student::class);
     }
+
+
 
     public function siblings()
     {

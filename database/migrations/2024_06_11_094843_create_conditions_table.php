@@ -13,17 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('conditions', function (Blueprint $table) {
             $table->id();
-            $table->string('price')->nullable();
-            $table->string('amount')->nullable();
-            $table->string('quantity')->nullable();
-            $table->string('currency')->nullable();
-            $table->string('status')->nullable();
+            $table->string('name');
             $table->string('description')->nullable();
-            $table->string('purpose')->nullable();
+            $table->string('displayname')->nullable();
+            $table->integer('active')->nullable();            
             $table->timestamps();
-
         });
     }
 
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('conditions');
     }
 };

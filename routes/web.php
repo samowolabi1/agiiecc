@@ -24,7 +24,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/verify-email/{id}/{hash}', [AuthController::class, 'verify'])->name('verification.verify');
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 
@@ -53,9 +52,11 @@ Route::middleware(['auth','verified'])->group(function () {
 
     //Adverts
     Route::get('/my-adverts', [AdvertController::class, 'user_ads'])->name('my.adverts');
+     Route::get('/create-new-advert', [AdvertController::class, 'new_ad'])->name('new.advert');
+      Route::post('/save-new-advert', [AdvertController::class, 'store'])->name('store.advert');
 
     //Company
-    Route::get('create-my-company', [CompanyController::class, 'store'])->name('create.company');
+    Route::post('create-my-company', [CompanyController::class, 'store'])->name('create.company');
     
 
 

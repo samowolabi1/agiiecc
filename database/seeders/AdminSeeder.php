@@ -34,7 +34,7 @@ class AdminSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        $userTwo->assignRole('ict');
+        $userTwo->assignRole('vendor');
         $userTwo->createToken('myapptoken')->plainTextToken;
 
 

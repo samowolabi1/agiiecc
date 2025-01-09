@@ -12,7 +12,7 @@ class Category extends Model
     
 
         protected $fillables = [
-
+        'id',
         'name',
         'description',
         'displayname',

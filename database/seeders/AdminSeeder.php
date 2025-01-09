@@ -18,8 +18,9 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $user = User::create([
-            'email' => 'admin@admin.com',
+            'email' => 'admin@agiing.com',
             'firstname' => 'Admin',
+            'department_id' => 1,
             'email_verified_at' => now(),
             'password' => bcrypt('password123'),
         ]);
@@ -28,8 +29,9 @@ class AdminSeeder extends Seeder
         $user->createToken('myapptoken')->plainTextToken;
 
         $userTwo = User::create([
-            'email' => 'chris@chris.com',
+            'email' => 'chris@agiing.com',
             'firstname' => 'Chris',
+            'department_id' => 3,
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
         ]);
@@ -39,13 +41,38 @@ class AdminSeeder extends Seeder
 
 
         $userThree = User::create([
-            'email' => 'ben@ben.com',
+            'email' => 'ben@agiing.com',
             'firstname' => 'Ben',
+            'department_id' => 2,
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
         ]);
 
-        $userThree->assignRole('user');
+        $userThree->assignRole('employee');
+        $userThree->createToken('myapptoken')->plainTextToken;
+
+
+        $userThree = User::create([
+            'email' => 'victoria@agiing.com',
+            'firstname' => 'Victoria',
+            'department_id' => 5,
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+        ]);
+
+        $userThree->assignRole('customer');
+        $userThree->createToken('myapptoken')->plainTextToken;
+
+
+        $userThree = User::create([
+            'email' => 'chale@agiing.com',
+            'firstname' => 'Chale',
+            'department_id' => 4,
+            'email_verified_at' => now(),
+            'password' => bcrypt('password'),
+        ]);
+
+        $userThree->assignRole('supervisor');
         $userThree->createToken('myapptoken')->plainTextToken;
 
     }

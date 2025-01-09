@@ -19,6 +19,7 @@ class Company extends Model
         'phone_number',
         'website',
         'address',
+        'created_by',
         'status',
         'description',
         'tags',

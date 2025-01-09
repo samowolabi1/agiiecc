@@ -23,12 +23,13 @@ return new class extends Migration
             $table->bigInteger('color_id')->unsigned()->nullable();
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->longText('short_description');
-            $table->longText('description');
+            $table->longText('short_description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('status');
             $table->string('approved')->nullable();
+            $table->string('created_by')->default('system');
             $table->string('measurement')->nullable();
-            $table->float('price');
+            $table->float('price')->nullable();
             $table->float('discount')->nullable();
             $table->string('product_link')->nullable();
             $table->string('brand')->nullable();

@@ -20,14 +20,14 @@ return new class extends Migration
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('houseNo')->nullable();
+            $table->string('userid')->nullable();
             $table->string('phoneNumber')->nullable();
             $table->string('postcode')->nullable();
             $table->string('stateOfOrigin')->nullable();
             $table->string('forename')->nullable();
             $table->string('address1')->nullable();
-            $table->string('address2')->nullable();
-            $table->string('nigeriaAddress')->nullable();
-            $table->string('passportNo')->nullable();
+            $table->string('isActive')->default('yes');
+            $table->string('created_by')->default('system');
             $table->date('dob')->nullable();
             $table->string('sex')->nullable();
             $table->string('others')->nullable();

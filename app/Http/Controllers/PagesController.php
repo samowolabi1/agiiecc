@@ -20,7 +20,8 @@ class PagesController extends Controller
 {
     public function admin_board(){
 
-        return view('admin.dashboard');
+        //return "This is fr admin";
+        return view('user.adminboard');
     }
 
     public function user_board(){

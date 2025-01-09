@@ -5,7 +5,6 @@
 @section('content')
 
 
-
 <div class="hero-slider">
   <div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/slider-1.jpg);">
     <div class="container">
@@ -13,34 +12,38 @@
         <div class="col-lg-8 text-center">
           <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
           <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.html">Shop Now</a>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{{ url('shop') }}">Shop Now</a>
         </div>
       </div>
     </div>
   </div>
+
   <div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/slider-3.jpg);">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 text-left">
           <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
           <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.html">Shop Now</a>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{{ url('shop') }}">Shop Now</a>
         </div>
       </div>
     </div>
   </div>
+
   <div class="slider-item th-fullpage hero-area" style="background-image: url(images/slider/slider-2.jpg);">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 text-right">
           <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">PRODUCTS</p>
           <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">The beauty of nature <br> is hidden in details.</h1>
-          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.html">Shop Now</a>
+          <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="{{ url('shop') }}">Shop Now</a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
 
 <section class="product-category section">
     <div class="container">
@@ -82,6 +85,16 @@
                 </div>
             </div>
         </div>
+    </div>
+</section>
+<section class="py-5" style="background-color: #f8f9fa;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <a href="your-link-here.com" target="_blank">
+                    <img src="img/banner-1.png" alt="Banner Ad" class="img-fluid rounded shadow" style="width: 150%; object-fit: cover;">
+                </a>
+            </div>
+        
     </div>
 </section>
 
@@ -364,9 +377,18 @@
 
         </div>
     </div>
+    <br>
 </section>
-
-
+<section class="py-5" style="background-color: #f8f9fa;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <a href="your-link-here.com" target="_blank">
+                    <img src="img/banner-1.png" alt="Banner Ad" class="img-fluid rounded shadow" style="width: 150%; object-fit: cover;">
+                </a>
+            </div>
+        
+    </div>
+</section>
 <!--
 Start Call To Action
 ==================================== -->
@@ -376,7 +398,7 @@ Start Call To Action
             <div class="col-md-12 text-center">
                 <div class="title">
                     <h2>Get New Item Alert</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, <br> facilis numquam impedit ut sequi. Minus facilis vitae excepturi sit laboriosam.</p>
+                    <p>Stay updated with the latest arrivals! Be the first to know when new items hit our store. <br>Whether you're looking for trendy accessories, gadgets, or apparel, <br> we've got you covered.</p>
                 </div>
                 <div class="col-lg-6 col-md-offset-3">
                     <div class="input-group subscription-form">
@@ -392,6 +414,83 @@ Start Call To Action
     </div>      <!-- End container -->
 </section>   <!-- End section -->
 
+
+<section id="features" class="py-5" style="background-color: #f8f9fa;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold">Why Choose Us</h2>
+      <p class="text-muted">Experience top-notch service tailored to meet your needs.</p>
+    </div>
+    <div class="row text-center">
+      <!-- Fast & Prompt Delivery -->
+      <div class="col-md-3 mb-4">
+        <div class="card border-0 bg-transparent">
+          <div class="icon-wrapper mb-3">
+            <i class="bi bi-truck text-success" style="font-size: 50px; color: #8fc74a;"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-semibold">Fast & Prompt Delivery</h5>
+            <p class="text-muted">Get your orders delivered quickly and reliably.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 24/7 Support -->
+      <div class="col-md-3 mb-4">
+        <div class="card border-0 bg-transparent">
+          <div class="icon-wrapper mb-3">
+            <i class="bi bi-headset text-success" style="font-size: 50px; color: #8fc74a;"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-semibold">24/7 Support</h5>
+            <p class="text-muted">Always here for you at <br> +234 XXX XX XXXX.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Best Price Guaranteed -->
+      <div class="col-md-3 mb-4">
+        <div class="card border-0 bg-transparent">
+          <div class="icon-wrapper mb-3">
+            <i class="bi bi-tag text-success" style="font-size: 50px; color: #8fc74a;"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-semibold">Best Price Guaranteed</h5>
+            <p class="text-muted">Competitive pricing with unmatched value.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 Days Return Policy -->
+      <div class="col-md-3 mb-4">
+        <div class="card border-0 bg-transparent">
+          <div class="icon-wrapper mb-3">
+            <i class="bi bi-arrow-repeat text-success" style="font-size: 50px; color: #8fc74a;"></i>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-semibold">7 Days Return Policy</h5>
+            <p class="text-muted">Shop with confidence and flexibility.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<br>
+<br>
+<section class="py-5" style="background-color: #f8f9fa;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <a href="your-link-here.com" target="_blank">
+                    <img src="img/banner-1.png" alt="Banner Ad" class="img-fluid rounded shadow" style="width: 150%; object-fit: cover;">
+                </a>
+            </div>
+        
+    </div>
+</section>
 <section class="section instagram-feed">
     <div class="container">
         <div class="row">
@@ -406,5 +505,7 @@ Start Call To Action
         </div>
     </div>
 </section>
+
+
 
 @endsection

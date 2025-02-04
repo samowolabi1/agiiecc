@@ -12,9 +12,54 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Vendor Information</h1>
         <!-- @if(!empty($company)) -->
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#exampleModalCenter"> Create New Item </a>
+        <a href="#" button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Create New Item </a>
         <!-- @endif -->
     </div>
+<!-- modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+                    <form action="{{route('admin.store.advert')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+
+                              <div class="form-row">
+
+                                <div class="form-group col-md-12">
+                                    <label class="control-label">Pick an Advert Category</label>
+                                    <select class="form-control" name="category_id" required>
+                                            <option selected>Pick a product, service or ride</option>
+                                        @foreach($categories as $cat)
+                                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                        @endforeach
+                                    </select>
+                                      @if ($errors->has('cat_id'))
+                                        <span class="text-danger">Category is required</span> 
+                                      @endif 
+                                </div>                                                         
+
+                                    <input type="hidden" name="userId" value="{{$id}}">
+                                 <button type="submit" class="btn btn-primary btn-sm">NEXT</button>
+                             </div>
+                    </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!-- ends modal -->
 
      <div class="row">
 
@@ -259,15 +304,9 @@
                                         <hr>
                                         <br>
 
-                                        <h6 class="card-title text-primary"><strong> Others: </strong></h6>
-                                        
-                                         <hr>
-                                        <br>
-
-                                        <a href="#" class="btn btn-primary"> Send Message to Vendor</a>
+                                        <a href="#" class="btn btn-primary"> Contact Vendor</a>
                                         
                                          
-
                                       </div>
                     
                                     </div> 

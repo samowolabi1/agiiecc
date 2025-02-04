@@ -4,22 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Ride;
+use App\Models\Advert;
 
-
-class Ridetype extends Model
+class Advertfee extends Model
 {
     use HasFactory;
 
 
 
 
-    public function rides(){
 
-        return $this->belongsTo(Ride::class);
+
+    public function adverts()
+    {
+        return $this->hasMany(Advert::class);
     }
-
-
-
-
 }

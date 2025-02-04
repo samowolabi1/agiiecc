@@ -37,5 +37,15 @@ class ColorSeeder extends Seeder
             'displayname'=> 'Black', 
             'active' => 1]);
 
+        Color::create([
+            'name' => 'White',
+            'displayname'=> 'White', 
+            'active' => 1]);
+
+        Color::create([
+            'name' => 'No Color',
+            'displayname'=> 'No Color', 
+            'active' => 1]);
+
     }
 }

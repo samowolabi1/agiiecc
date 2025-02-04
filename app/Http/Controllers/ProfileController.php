@@ -18,7 +18,11 @@ use App\Models\Department;
 use App\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Ride;
+use App\Models\Service;
+use App\Models\Product;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Category;
 
 
 class ProfileController extends Controller
@@ -31,6 +35,7 @@ class ProfileController extends Controller
 
         $states = State::all();
         $company = User::find(Auth::id())->company;
+        
 
         //return $company;
 
@@ -54,15 +59,43 @@ class ProfileController extends Controller
         return view('vendors.index',compact('users'));
     }
 
+    public function product_index(){
+
+        $products = Product::all();
+
+
+        return view('items.prodindex',compact('products'));
+    }
+
+    public function service_index(){
+
+      
+        $services = Service::all();
+
+
+        return view('items.serviceindex',compact('services'));
+    }
+
+    public function ride_index(){
+
+        $rides = Ride::all();
+
+
+        return view('items.rideindex',compact('rides'));
+    }
+
+
+
     public function venview($id){
 
         $user = User::find($id);
         $states = State::all();
         $employees = User::where('department_id',2)->get();
         $company = User::find($id)->company;
+        $categories = Category::all();
 
 
-        return view('vendors.show',compact('user','company','states','id','employees'));
+        return view('vendors.show',compact('user','company','states','id','employees','categories'));
     }
 
      public function cusview($id){

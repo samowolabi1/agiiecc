@@ -26,7 +26,7 @@ return new class extends Migration
             $table->longText('short_description')->nullable();
             $table->longText('description')->nullable();
             $table->string('status');
-            $table->string('approved')->nullable();
+            $table->string('approved')->default('NOT APPROVED');
             $table->string('created_by')->default('system');
             $table->string('measurement')->nullable();
             $table->float('price')->nullable();

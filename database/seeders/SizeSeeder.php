@@ -35,5 +35,11 @@ class SizeSeeder extends Seeder
             'description' => 'Large size',
             'displayname'=> 'Large', 
             'active' => 1]);
+
+        Size::create([
+            'name' => 'No Size',
+            'description' => 'No Size',
+            'displayname'=> 'No Size', 
+            'active' => 1]);
     }
 }

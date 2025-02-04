@@ -118,6 +118,7 @@
                                             <!-- <th>Phone Number</th> -->
                                             <th>Date Created</th>
                                             <th>Action</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -127,6 +128,7 @@
                                             <th>Email</th>
                                             <!-- <th>Phone Number</th> -->
                                             <th>Date Created</th>
+                                            <th>Action</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -139,7 +141,8 @@
                                             <!-- <td>{{$usr->phoneNumber}}</</td> -->
                                             <td>{{$usr->created_at->isoFormat('MMMM Do YYYY')}}</td>
                                             <!-- <td><a href="{{route('profile.edit',$usr->id)}}">View</a><i></i></td> -->
-                                            <td><a href="{{route('vendor.show',$usr->id)}}">View</a><i class="fab fa-view-f fa-fw"></i></td>
+                                            <td><a href="{{route('vendor.show',$usr->id)}}">Show Vendor</a><i class="fab fa-view-f fa-fw"></i></td>
+                                            <td><a href="{{route('vendor.items',$usr->id)}}">Show Vendor Items</a><i class="fab fa-view-f fa-fw"></i></td>
 
                                           </tr>
                                         @endforeach

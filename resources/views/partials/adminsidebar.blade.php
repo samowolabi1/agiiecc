@@ -55,9 +55,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                        <a class="collapse-item" href="#">Active Ads</a>
-                        <a class="collapse-item" href="#">Inactive Ads</a>
-                        <a class="collapse-item" href="#">Awaiting Approval</a>
+                        <a class="collapse-item" href="{{route('active.adverts')}}">Active Ads</a>
+                        <a class="collapse-item" href="{{route('inactive.adverts')}}">Inactive Ads</a>
+                        <a class="collapse-item" href="{{route('adverts.unapproved')}}">Awaiting Approval</a>
                     </div>
                 </div>
             </li>
@@ -71,10 +71,17 @@
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+                        <a class="collapse-item" href="{{route('payments.pending')}}">Make Payment</a>
                         <a class="collapse-item" href="#">Transactions</a>
                         <a class="collapse-item" href="#">Others</a>
                     </div>
                 </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('all.products')}}">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>All Items</span></a>
             </li>
 
             <li class="nav-item">

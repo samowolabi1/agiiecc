@@ -34,74 +34,87 @@ class ProductController extends Controller
 
     }
 
-    public function store(Request $request){
 
-        $rules = array(
-            'name' => 'required|string',
-            'price' => 'required|integer',
-            'description' => 'required|string',
-            'short_description' => 'required|string',
-            'description' => 'required|string',
-            'type_id' => 'required|integer',
-            'size_id' => 'required',
-            'color_id' => 'required'
-    );
+    public function admin_store(Request $request)
+        {
+            
+
+            $rules = [
+                'name' => 'required|string',
+                'price' => 'required|integer',
+                'description' => 'required|string',
+                'short_description' => 'required|string',
+                'type_id' => 'required|integer',
+                'size_id' => 'required|array',
+                'color_id' => 'required|array',
+            ];
 
             $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return response([
+                    'error_msg' => $validator->errors(),
+                ], 400);
+            }
+
            
+            $userid = $request->userId;
+            $user = User::find($userid);
 
-                if ($validator->fails()) {
+                if (!$user || !$user->company) {
+                   
+                    return 'User does not belong to any company.';
+                }
 
-                    return response([
-                        'error_msg' => $validator->errors()
-                    ], 400);
-                
-                }else{
+            $companyId = $user->company->id;
+            $colorIds = $request->color_id;
+            $sizeIds = $request->size_id;
 
-                    DB::beginTransaction(); // Start transaction
+            //return $userid." :".$companyId;
+
+            DB::beginTransaction();
+
 
             try {
 
-                // Extract necessary IDs
-                $colorIds = $request->color_id;
-                $sizeIds = $request->size_id;
-                $companyId = Auth::user()->company->id;
-
-                // Create an advert
                 $advert = Advert::create([
-                    'user_id' => Auth::id(),
+                    'user_id' => $userid,
                     'company_id' => $companyId,
+                    'advertfee_id' => 1,
                     'category_id' => Session::get('category_id'),
                     'status' => 'INACTIVE',
                     'approved' => 'NO',
                     'paid' => 'NO',
                 ]);
 
-                // Create a product
+                //return $userid." :".$companyId;
+                
+
                 $product = Product::create([
-                    'user_id' => Auth::id(),
+                    'user_id' => $userid,
                     'company_id' => $companyId,
                     'type_id' => $request->type_id,
                     'advert_id' => $advert->id,
                     'size_id' => $sizeIds[0], // First size
                     'color_id' => $colorIds[0], // First color
-                    'name' => $request->name.'-'. rand(4,50),
+                    'name' => $request->name . '-' . rand(4, 50),
                     'price' => $request->price,
                     'description' => $request->description,
                     'short_description' => $request->short_description,
                     'status' => 'INACTIVE',
                 ]);
 
-                $productId = $product->id;
+                 
 
-                 Session::put('product_id', $product->id);
+                Session::put('product_id', $product->id);
+                Session::put('user_id', $userid);
 
-                // Create product colors
-                $productColors = array_map(function ($colorId) use ($product, $advert, $company) {
-                    $color = Color::findOrFail($colorId); // Throws an exception if not found
+                $productColors = array_map(function ($colorId) use ($product, $advert, $companyId) {
+
+                    $color = Color::findOrFail($colorId);
                     return [
-                        'user_id' => Auth::id(),
-                        'company_id' => $company->id,
+                        'user_id' => Session::get('user_id'),
+                        'company_id' => $companyId,
                         'product_id' => $product->id,
                         'advert_id' => $advert->id,
                         'name' => $color->name,
@@ -111,12 +124,11 @@ class ProductController extends Controller
                 }, $colorIds);
                 Productcolor::insert($productColors);
 
-                // Create product sizes
-                $productSizes = array_map(function ($sizeId) use ($product, $advert, $company) {
-                    $size = Size::findOrFail($sizeId); // Throws an exception if not found
+                $productSizes = array_map(function ($sizeId) use ($product, $advert, $companyId) {
+                    $size = Size::findOrFail($sizeId);
                     return [
-                        'user_id' => Auth::id(),
-                        'company_id' => $company->id,
+                        'user_id' => Session::get('user_id'),
+                        'company_id' => $companyId,
                         'product_id' => $product->id,
                         'advert_id' => $advert->id,
                         'name' => $size->name,
@@ -126,29 +138,219 @@ class ProductController extends Controller
                 }, $sizeIds);
                 Productsize::insert($productSizes);
 
-                DB::commit(); // Commit transaction if all operations are successful
+                DB::commit();
 
-               // return response()->json(['success' => true, 'message' => 'Product and advert created successfully!']);
+                Session::forget('category_id');
+                Session::forget('product_id');
+                Session::forget('user_id');
 
+                //$itemRoute = "admin.product.show,".$product->id;
+                $itemId = 1;
+
+                return view('vendors.imageupload1', ['productId' => $product->id,'user' => $user, 'itemId' => $itemId]);
 
             } catch (\Exception $e) {
-                DB::rollBack(); // Roll back transaction in case of error
-
-                // Log the error for debugging (optional)
+                DB::rollBack();
                 \Log::error('Transaction failed: ' . $e->getMessage());
-
-                return response()->json(['success' => false, 'message' => 'An error occurred while creating the product.'], 500);
+                return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
             }
+
         }
 
-        return view('images.newimg', compact('productId'));
 
-           //return redirect()->route('my.adverts')->with('success','Product and advert created successfully!');
 
-         
+    public function store(Request $request)
+        {
+            $rules = [
+                'name' => 'required|string',
+                'price' => 'required|integer',
+                'description' => 'required|string',
+                'short_description' => 'required|string',
+                'type_id' => 'required|integer',
+                'size_id' => 'required|array',
+                'color_id' => 'required|array',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return response([
+                    'error_msg' => $validator->errors(),
+                ], 400);
+            }
+
+            $user = Auth::user();
+            if (!$user->company) {
+                return response()->json(['success' => false, 'message' => 'User does not belong to any company.'], 400);
+            }
+
+            $companyId = $user->company->id;
+            $colorIds = $request->color_id;
+            $sizeIds = $request->size_id;
+
+            DB::beginTransaction();
+
+            try {
+                $advert = Advert::create([
+                    'user_id' => Auth::id(),
+                    'company_id' => $companyId,
+                    'advertfee_id' => 1,
+                    'category_id' => Session::get('category_id'),
+                    'status' => 'INACTIVE',
+                    'approved' => 'NO',
+                    'paid' => 'NO',
+                ]);
+
+                $product = Product::create([
+                    'user_id' => Auth::id(),
+                    'company_id' => $companyId,
+                    'type_id' => $request->type_id,
+                    'advert_id' => $advert->id,
+                    'size_id' => $sizeIds[0], // First size
+                    'color_id' => $colorIds[0], // First color
+                    'name' => $request->name . '-' . rand(4, 50),
+                    'price' => $request->price,
+                    'description' => $request->description,
+                    'short_description' => $request->short_description,
+                    'status' => 'INACTIVE',
+                ]);
+
+                Session::put('product_id', $product->id);
+
+                $productColors = array_map(function ($colorId) use ($product, $advert, $companyId) {
+                    $color = Color::findOrFail($colorId);
+                    return [
+                        'user_id' => Auth::id(),
+                        'company_id' => $companyId,
+                        'product_id' => $product->id,
+                        'advert_id' => $advert->id,
+                        'name' => $color->name,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }, $colorIds);
+                Productcolor::insert($productColors);
+
+                $productSizes = array_map(function ($sizeId) use ($product, $advert, $companyId) {
+                    $size = Size::findOrFail($sizeId);
+                    return [
+                        'user_id' => Auth::id(),
+                        'company_id' => $companyId,
+                        'product_id' => $product->id,
+                        'advert_id' => $advert->id,
+                        'name' => $size->name,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ];
+                }, $sizeIds);
+                Productsize::insert($productSizes);
+
+                DB::commit();
+                Session::forget('category_id');
+
+                return view('images.newimg', ['productId' => $product->id]);
+
+            } catch (\Exception $e) {
+                DB::rollBack();
+                \Log::error('Transaction failed: ' . $e->getMessage());
+                return response()->json(['success' => false, 'message' => 'An error occurred while creating the product.'], 500);
+            }
+
+        }
+
+
+    public function prodview($id){
+
+        $product = Product::find($id);
+
+        return Response::json([
+                'status' => 201,
+                'product' => $product
+            ]);
     }
 
-    public function show($id){
+    public function admin_product_show($id){
+
+        //return $id;
+
+        $product = Product::find($id);
+        $vendor = User::where('id',$product->user_id)->first();
+        $company = Company::where('id',$product->company_id)->first();
+        $categories = Category::all();
+
+        return view('product.adminshow',compact('product','vendor','company','categories'));
+    }
+
+    Public function admin_approve_product($id){
+
+        $prods = Product::find($id);
+        $advertid = Advert::where('id',$prods->advert_id)->first();
+
+
+                 if ($prods->approved == 'YES'){
+
+                        if ($prods->status == 'Active') {
+                        
+                            return redirect()->back()->with('error','Product must be Inactive');
+                        
+                        }
+
+                        $prods->approved = 'NO';
+                        $prods->save();
+
+                        $advertid->level = 'LEVEL 1';
+                        $advertid->save();
+
+
+                 }else{
+
+                    
+                        $prods->approved = 'YES';
+                        $prods->save();
+
+                        $advertid->level = 'LEVEL 2';
+                        $advertid->save();
+                 }
+
+        return redirect()->back()->with('success','Updated Succesfully');
+
+    }
+
+    Public function admin_status_product($id){
+
+         $prods = Product::find($id);
+         $advertid = Advert::where('id',$prods->advert_id)->first();
+
+         if ($prods->approved == 'NO') {
+                        
+                return redirect()->back()->with('error','Product must be Approved');
+            
+            }
+
+         if ($prods->status == 'Active'){
+
+            $prods->status = 'Inactive';
+            $prods->save();
+
+            $advertid->level = 'LEVEL 2';
+            $advertid->save();
+
+         }else{
+
+            $prods->status = 'Active';
+            $prods->save();
+
+            $advertid->level = 'LEVEL 3';
+            $advertid->save();
+         }
+
+         
+
+        return redirect()->back()->with('success','Updated Succesfully');
+
+    }
+
+    public function adminprodview($id){
 
         $product = Product::find($id);
 

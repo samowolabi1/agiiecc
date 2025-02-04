@@ -5,6 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Models\Ridetype;
+use App\Models\Advert;
+use App\Models\User;
+use App\Models\Company;
+use App\Models\Image;
 
 class Ride extends Model
 {
@@ -50,4 +55,31 @@ class Ride extends Model
                     ]
                 ];
             }
+
+
+
+        public function ridetype()
+        {
+            return $this->belongsTo(Ridetype::class);
+        }
+
+        public function advert()
+        {
+            return $this->belongsTo(Advert::class);
+        }
+
+        public function user()
+        {
+            return $this->belongsTo(user::class);
+        }
+
+        public function company()
+        {
+            return $this->belongsTo(Company::class);
+        }
+
+        public function images()
+        {
+            return $this->hasMany(Image::class);
+        }
 }

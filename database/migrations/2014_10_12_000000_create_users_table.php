@@ -17,18 +17,17 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('department_id')->nullable();
-            $table->unsignedBigInteger('file_id')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('houseNo')->nullable();
+            $table->string('userid')->nullable();
             $table->string('phoneNumber')->nullable();
             $table->string('postcode')->nullable();
             $table->string('stateOfOrigin')->nullable();
             $table->string('forename')->nullable();
             $table->string('address1')->nullable();
-            $table->string('address2')->nullable();
-            $table->string('nigeriaAddress')->nullable();
-            $table->string('passportNo')->nullable();
+            $table->string('isActive')->default('yes');
+            $table->string('created_by')->default('system');
             $table->date('dob')->nullable();
             $table->string('sex')->nullable();
             $table->string('others')->nullable();
@@ -38,7 +37,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
 
-            $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
+          
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
         });
     }

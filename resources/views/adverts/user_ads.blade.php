@@ -27,13 +27,13 @@
 <div style="height: 40px;"></div>
 
          <div class="row m-3">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
 
                                 <!-- Widget Category -->
             <div class="widget widget-category">
                 <h4 class="widget-title"></h4>
                 <ul class="widget-category-list">
-                    <li><a href="#!">New Advert</a>
+                    <li><a href="{{route('new.advert')}}">New Advert</a>
                     </li>
                     <li><a href="#!">Running Adverts</a>
                     </li>
@@ -48,7 +48,7 @@
                 
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-10">
                 
                       <div class="total-order">
                         <h4>You have no running adverts</h4>

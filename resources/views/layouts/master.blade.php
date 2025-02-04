@@ -23,12 +23,18 @@
   <link rel="stylesheet" href="{{ asset('plugins/themefisher-font/style.css') }}">
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}">
+
+
   
   <!-- Animate css -->
   <link rel="stylesheet" href="{{ asset('plugins/animate/animate.css') }}">
   <!-- Slick Carousel -->
   <link rel="stylesheet" href="{{ asset('plugins/slick/slick.css') }}">
   <link rel="stylesheet" href="{{ asset('plugins/slick/slick-theme.css') }}">
+
+  <link href="{{ asset('plugins/bootstrap/css/bootstrap5.min.css')}}" rel="stylesheet">
+
+
   
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -380,6 +386,8 @@
     <script src="{{ asset('plugins/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap 3.1 -->
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+     <script src="{{ asset('plugins/bootstrap/js/bootstrap5.bundle.min.js') }}"></script>
+
     <!-- Bootstrap Touchpin -->
     <script src="{{ asset('plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js') }}"></script>
     <!-- Instagram Feed Js -->

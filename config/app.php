@@ -166,6 +166,7 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Unicodeveloper\Paystack\PaystackServiceProvider::class,
 
 
         /*
@@ -196,6 +197,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
         // ...
     ])->toArray(),
 

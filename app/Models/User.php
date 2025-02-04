@@ -8,14 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
-use App\Models\Student;
-use App\Models\Department;
-use App\Models\File;
-use App\Models\Police;
-use App\Models\Impend;
-use App\Models\Pensioner;
-use App\Models\Emergency;
-use App\Models\Sibling;
+use App\Models\Company;
+use App\Models\Advert;
+use App\Models\Image;
+use App\Models\Product;
+use App\Models\Service;
+use App\Models\Ride;
+use App\Models\Category;
 
 
 
@@ -35,6 +34,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'firstname',
         'lastname',
         'forename',
+        'userid',
+        'department_id',
         'address1',
         'address2',
         'nigeriaAddress',
@@ -50,31 +51,15 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
 
-    public function students()
+    public function company()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasOne(Company::class);
     }
 
-    public function siblings()
+    public function advert()
     {
-        return $this->hasMany(Sibling::class);
+        return $this->hasMany(Advert::class);
     }
-
-    public function polices()
-    {
-        return $this->hasMany(Police::class);
-    }
-
-    public function emergencies()
-    {
-        return $this->hasMany(Emergency::class);
-    }
-
-    public function impends()
-    {
-        return $this->hasMany(Impend::class);
-    }
-
 
     public function pensioners()
     {
@@ -84,6 +69,31 @@ class User extends Authenticatable implements MustVerifyEmail
     public function files()
     {
         return $this->hasMany(File::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function rides()
+    {
+        return $this->hasMany(Ride::class);
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
+        public function images()
+    {
+        return $this->hasMany(Image::class);
     }
 
     public function department()

@@ -15,9 +15,6 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('file_id');
             $table->string('price')->nullable();
             $table->string('amount')->nullable();
             $table->string('quantity')->nullable();
@@ -27,11 +24,6 @@ return new class extends Migration
             $table->string('purpose')->nullable();
             $table->timestamps();
 
-
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('file_id')->references('id')->on('files')->onDelete('cascade');
         });
     }
 

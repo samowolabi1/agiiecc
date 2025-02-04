@@ -26,7 +26,7 @@
 <div style="height: 40px;"></div>
 
          <div class="row m-3">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
 
                                 <!-- Widget Category -->
             <div class="widget widget-category">
@@ -50,29 +50,29 @@
             <div class="col-md-8">
                 
                       <div class="total-order">
-                        <h4>Saved Items</h4>
-                        <div class="table-responsive">
-                         <!--    <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Date</th>
-                                        <th>Items</th>
-                                        <th>Total Price</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="#!">#252125</a></td>
-                                        <td>Mar 25, 2016</td>
-                                        <td>2</td>
-                                        <td>$ 99.00</td>
-                                    </tr>
+                    
+
+
+                          <div style="height: 500px;" class="row bg-white">
+                                <div >
+                                  <div class="started">
+                                    <h4 class="text-primary">Simple Steps To Take &nbsp; <i class="fa fa-pencil"></i></h4>
+                                    <ol>
+                                      <li>&nbsp; 1. Check your mailbox for our welcome mail</li><br>
+                                      <li>&nbsp; 2. Get your shop details ready! Such as Name, Description and Slogan</li><br>
+                                      <li>&nbsp; 3. Click the "blue button" above to create your shop</li><br>
+                                      <li class="text-danger">&nbsp; 
+                                    </ol>
+                                    
+                                       @if(empty(auth()->user()->company->id))
+                              <a href="{{route('profile.index')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa fa-bank text-white-50"></i> Create a profile to start selling</a>
+                              @endif
+                                  </div>
+                                </div>
+                             
                                 
-                                </tbody>
-                            </table> -->
-                        </div>
+                              </div>
+
                     </div>
             </div>
             

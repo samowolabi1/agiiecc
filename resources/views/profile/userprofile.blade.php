@@ -10,12 +10,12 @@
             <div class="col-md-12">
                @include('partials.userdshheader')
                 
-
-                <div class="dashboard-wrapper user-dashboard">
+<hr>
+                <div class="user-dashboard">
                     <div class="media">
                         
                         <div class="media-body">
-                            <h2 class="media-heading">My Profile </h2>
+                            <!-- <h2 class="media-heading">My Profile </h2> -->
                             <!-- <p>Created - 2 Years Ago || Last Login - 2 Days ago </p> -->
                         </div>
                     </div>
@@ -25,149 +25,214 @@
         </div>
 
 
-<div style="height: 40px;"></div>
+<div style="height: 20px;"></div>
 
          <div class="row m-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3 dashboard-wrapper">
 
-                                <!-- Widget Category -->
-            <div class="widget widget-category">
-                <h4 class="widget-title"></h4>
-                <ul class="widget-category-list">
-                    <li><a href="#!">View Profile</a>
-                    </li>
-                    <li><a href="#!">Change Information</a>
-                    </li>
-                </ul>
-            </div> <!-- End category  -->             
+                                            <!-- Widget Category -->
+                        <div class="widget widget-category border border-light">
+                            <h4 class="widget-title"></h4>
+                            <ul class="widget-category-list">
+                                <li><a href="#!">View Profile</a>
+                                </li>
+                                <li><a href="#!">Change Information</a>
+                                </li>
+                            </ul>
+                        </div> <!-- End category  -->             
 
               
                 
-            </div>
-
-            <div class="col-md-8">
-                
-                      <div class="total-order">
-                        <h4>You have no running adverts</h4>
-                        <div class="table-responsive">
-                        
-          <form action="{{route('company.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-
-                <div class="form-group">
-                    <label class="control-label">Company/Business Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Product name should be descriptive" value="{{ old('name') }}" maxlength="25" autocomplete required>
-                    @if ($errors->has('name'))
-                          <span class="text-danger">{{$errors->first('name')}}</span> 
-                    @endif
-                </div>
-                  <label class="control-label">Category</label>
-                <div style="width: 100%;" class="form-group clearfix">
-                   <select style="width:200px; border: 2px;" class="selectpicker form-control" name="productcat_id" required>
-                    <option value=""> Select Product Category </option>
-                        @foreach($productcats as $cat)
-                            <option value="{{$cat->id}}">{{$cat->name}}</option>
-                        @endforeach
-                    </select>
                 </div>
 
-                <div class="form-group">
-                    <label class="control-label">Brand Name</label>
-                    <input type="text" name="brand" class="form-control" placeholder="Product Brand Name " value="{{ old('brand') }}" maxlength="18" autocomplete required>
-                    @if ($errors->has('brand'))
-                          <span class="text-danger">{{$errors->first('brand')}}</span> 
-                    @endif
-                </div>
-                
-                 <div class="form-group">
-                    <label class="control-label">Short Description</label>
-                        <textarea name="short_description" class="form-control" placeholder="Short description about your product" maxlength="87" value="{{ old('short_description') }}" autocomplete required></textarea>
-                        @if ($errors->has('short_description'))
-                          <span class="text-danger">{{$errors->first('short_description')}}</span> 
-                    @endif
+
+                @empty($company)
+                <div class="col-md-9">
                     
-                </div>
+                          <div>
+                            <!-- <h4>You have no running adverts</h4> -->
+                            <div>
+                            
+                                  <form action="{{route('create.company')}}" method="post" enctype="multipart/form-data">
+                                        @csrf
 
-              
+                                          <div class="form-row">
 
-                <div class="form-group">
-                    <label class="control-label">Full Description</label>
-                        <textarea name="description" class="ckeditor" placeholder="Full information about your product" value="{{ old('description') }}" autocomplete required></textarea>
-                        @if ($errors->has('description'))
-                          <span class="text-danger">{{$errors->first('description')}}</span> 
-                    @endif
-                    
-                </div>
+                                            <div class="form-group col-md-6">
+                                              <label class="control-label">Business Name</label>
+                                                <input type="text" name="name" class="form-control" placeholder="Business Name" value="{{ old('name') }}" required>
+                                                @if ($errors->has('name'))
+                                                      <span class="text-danger">{{$errors->first('name')}}</span> 
+                                                @endif
+                                            </div>
 
-                <div class="form-group">
-                    <label class="control-label">Price</label>
-                    <input type="text" pattern="[0-9]{1,}" name="price" class="form-control" value="{{ old('price') }}" autocomplete>
-                    @if ($errors->has('price'))
-                          <span class="text-danger">{{$errors->first('price')}}</span> 
-                    @endif
-                </div>
+                                            <div class="form-group col-md-6">
+                                              <label class="control-label">Display Name</label>
+                                                <input type="text" name="brand_name" class="form-control" placeholder="Business Display Name" value="{{ old('brand_name') }}" required>
+                                                @if ($errors->has('brand_name'))
+                                                  <span class="text-danger">{{$errors->first('brand_name')}}</span> 
+                                                @endif                                        
+                                            </div>
+                                          </div>
 
-                <div class="form-group">
-                 <label class="control-label">Product Delivery States</label>
-                <select style="width:200px; border: 3px;" name="delivery_coverage[]" class="selectpicker form-control" multiple required>
-                                            <option value="Abia">Abia</option>
-                                            <option value="Adamawa">Adamawa</option>
-                                            <option value="Akwa Ibom">Akwa Ibom</option>
-                                            <option value="Anambra">Anambra</option>
-                                            <option value="Bauchi">Bauchi</option>
-                                          
-                        
-                    </select>
-                    @if ($errors->has('delivery_coverage'))
-                          <span class="text-danger">{{$errors->first('delivery_coverage')}}</span> 
-                    @endif
-                </div>
-<br>
-                <div class="form-group">
-                    <label class="control-label">Tags</label>
-                    <input type="text" name="tags" class="form-control" placeholder="shoes,bags,wears,red,quality" value="{{ old('tags') }}" autocomplete required>
-                    @if ($errors->has('tags'))
-                          <span class="text-danger">{{$errors->first('tags')}}</span> 
-                    @endif
-                </div>
+                                       
+                                        
+                                         <div class="form-group col-md-12">
+                                            <label class="control-label">Company Short Description</label>
+                                                <textarea name="short_description" class="form-control" placeholder="Short description about your company" maxlength="87" value="" autocomplete required></textarea>
+                                                @if ($errors->has('short_description'))
+                                                  <span class="text-danger">{{$errors->first('short_description')}}</span> 
+                                            @endif
+                                            
+                                        </div>
 
-                 <div class="form-group">
-                  <label for="file">Image 1</label>
-                  <input type="file" name="image1" class="form-control">
-                   @if ($errors->has('image1'))
-                         <span class="text-danger">File size must be below 4 megabyte or wrong file type is selected</span>
-                  @endif
-              </div>
+                                         <div class="form-group col-md-12">
+                                            <label class="control-label">Company Address</label>
+                                                <input name="address" class="form-control" placeholder="Company Address" required>
+                                                @if ($errors->has('address'))
+                                                  <span class="text-danger">{{$errors->first('address')}}</span> 
+                                            @endif
+                                            
+                                        </div>
 
-              <div class="form-group">
-                  <label for="file">Image 2</label>
-                  <input type="file" name="image2" class="form-control">
-                   @if ($errors->has('image2'))
-                         <span class="text-danger">File size must be below 4 megabyte or wrong file type is selected</span>
-                  @endif
-              </div>
+                                      
 
-              <div class="form-group">
-                  <label for="file">Image 3</label>
-                  <input type="file" name="image3" class="form-control">
-                   @if ($errors->has('image3'))
-                         <span class="text-danger">File size must be below 4 megabyte or wrong file type is selected</span>
-                  @endif
-              </div>
+                                    <div class="form-row">
 
-              
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">State</label>
+                                                <select class="form-control" name="state_id" required>
+                                                        <option selected>Choose...</option>
+                                                    @foreach($states as $state)
+                                                        <option value="{{$state->id}}">{{$state->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                  @if ($errors->has('state_id'))
+                                                    <span class="text-danger">State is required</span> 
+                                                  @endif    
+                                            
+                                        </div>
 
-                     <button style="background-color:#FF7648;" type="submit" class="btn btn-success">Create Product</button>
-            </form>
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label">Phone Number</label>
+                                                <input name="phone_number" class="form-control" placeholder="Mobile Phone Number" required>
+                                                @if ($errors->has('phone_number'))
+                                                  <span class="text-danger">{{$errors->first('phone_number')}}</span> 
+                                            @endif
+                                            
+                                        </div>
+                                    
+                                             
+
+                                    </div>
+                                       
+
+                                         <div class="form-group col-md-12">
+                                            <label class="control-label">Company Website (Optional)</label>
+                                                <input type="text" name="website" class="form-control" placeholder="Short description about your product" maxlength="87" required>
+                                                @if ($errors->has('website'))
+                                                  <span class="text-danger">{{$errors->first('website')}}</span> 
+                                                @endif
+                                            
+                                        </div> 
+
+                                         <div class="form-row">
+
+                                            <div class="form-group col-md-3">
+                                              <label class="control-label">Facebook Link</label>
+                                                <input type="text" name="facebook" class="form-control" placeholder="Facebook Link" value="{{ old('facebook') }}" required>
+                                                @if ($errors->has('facebook'))
+                                                      <span class="text-danger">{{$errors->first('facebook')}}</span> 
+                                                @endif
+                                            </div>
+
+                                            <div class="form-group col-md-3">
+                                              <label class="control-label">Whatsapp Link</label>
+                                                <input type="text" name="whatsapp" class="form-control" placeholder="Whatsapp Link" value="{{ old('whatsapp') }}" required>
+                                                @if ($errors->has('whatsapp'))
+                                                  <span class="text-danger">{{$errors->first('whatsapp')}}</span> 
+                                                @endif                                        
+                                            </div>
+
+                                            <div class="form-group col-md-3">
+                                              <label class="control-label">Twitter(X) Link</label>
+                                                <input type="text" name="twitter" class="form-control" placeholder="Twitter Link" value="{{ old('twitter') }}" required>
+                                                @if ($errors->has('twitter'))
+                                                  <span class="text-danger">{{$errors->first('twitter')}}</span> 
+                                                @endif                                        
+                                            </div>
+
+                                              <div class="form-group col-md-3">
+                                              <label class="control-label">Instagram Link</label>
+                                                <input type="text" name="instagram" class="form-control" placeholder="Instagram Link" value="{{ old('instagram') }}" required>
+                                                @if ($errors->has('instagram'))
+                                                  <span class="text-danger">{{$errors->first('instagram')}}</span> 
+                                                @endif                                        
+                                            </div>
+                                          </div>                               
+
+                                             <button style="background-color:#8FC74A; margin-left: 15px;" type="submit" class="btn btn-success">Create Company</button>
+                                    </form>
+                            
+                            </div>
                         </div>
-                    </div>
-            </div>
-            
-        </div>
+                </div>
+                
+                @endempty
+
+<br>
+    
+                @if(!empty($company))
+                <div class="col-md-9">
+                    
+                   <div class="col-md-6">
+
+                    <table style="border:0px;" class="table table-hover">
+                      
+                        <tr>                          
+                          <td style="border:0px;"><strong>Company Name: </strong></td>
+                          <td style="border:0px;">{{$company->name ?? ''}}</td>
+                        </tr>
+                        <tr>
+                          <td style="border:0px;"><strong>Description: </strong></td>
+                          <td style="border:0px;">{{$company->description ?? ''}}</td>
+                        </tr>
+                        <tr>
+                          <td style="border:0px;"><strong>Address: </strong></td>
+                          <td style="border:0px;">{{$company->description ?? ''}}</td>
+                        </tr>
+
+                         <tr>
+                          <td style="border:0px;"><strong>Phone Number: </strong></td>
+                          <td style="border:0px;">{{$company->phone_number ?? ''}}</td>
+                        </tr>
+
+                        <tr>
+                          <td style="border:0px;"><strong>Website: </strong></td>
+                          <td style="border:0px;">{{$company->website ?? ''}}</td>
+                        </tr>
+
+                        <tr>
+                          <td style="border:0px;"><strong>Social Media: </strong></td>
+                          <td style="border:0px;">{{$company->website ?? ''}}</td>
+                        </tr>
+                    </table>
+                       
+                   </div>
+
+                   <div class="col-md-6">
+                       
+                   </div>
 
         
+                </div>
+                @endif
+
+
+        </div>
     </div>
-</section>
+
+    </section>
 
 
 

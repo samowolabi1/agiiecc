@@ -14,6 +14,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
+use App\Helpers\Routes\RouteHelper;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/s', function () {
+//     return "hi";
+// });
+
+RouteHelper::includeRouteFiles(__DIR__ . '/web');
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
@@ -38,13 +43,15 @@ Route::get('/', function () {
 // Route::get('/admin', function () {
 //     return view('admin.index');
 // })->middleware(['auth', 'role:admin'])->name('admin.index');
+
+
 Route::get('/verification-email/{id}/{hash}', [AuthController::class, 'verify'])->name('verification.verify');
 
 Route::get('/mail-testing', [PagesController::class, 'maily'])->name('mail.test');
 
 
 
-Route::middleware(['auth','verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/admin_dashboard', [PagesController::class, 'admin_board'])->middleware(['auth', 'role:admin'])->name('admin.index');
     Route::get('/agent_dashboard', [PagesController::class, 'agent_board'])->middleware(['auth', 'role:customer'])->name('agent.index');
@@ -63,48 +70,48 @@ Route::middleware(['auth','verified'])->group(function () {
 
     //Adverts
     Route::get('/my-adverts', [AdvertController::class, 'user_ads'])->name('my.adverts');
-     Route::get('/create-new-advert', [AdvertController::class, 'new_ad'])->name('new.advert');
-      Route::post('/save-new-advert', [AdvertController::class, 'store'])->name('store.advert');
-      Route::get('/admin-show-advert/{id}', [AdvertController::class, 'show_ads'])->name('advert.show');
+    Route::get('/create-new-advert', [AdvertController::class, 'new_ad'])->name('new.advert');
+    Route::post('/save-new-advert', [AdvertController::class, 'store'])->name('store.advert');
+    Route::get('/admin-show-advert/{id}', [AdvertController::class, 'show_ads'])->name('advert.show');
 
-      ///Admin Adverts
-      Route::get('admin-active-adverts', [AdvertController::class, 'active_ads'])->name('active.adverts');
-      Route::get('admin-inactive-adverts', [AdvertController::class, 'inactive_ads'])->name('inactive.adverts');
-      Route::get('admin-adverts-unapproved', [AdvertController::class, 'unapproved_active_ads'])->name('adverts.unapproved');
-      Route::get('admin-payments-pending', [AdvertController::class, 'payment_pending'])->name('payments.pending');
+    ///Admin Adverts
+    Route::get('admin-active-adverts', [AdvertController::class, 'active_ads'])->name('active.adverts');
+    Route::get('admin-inactive-adverts', [AdvertController::class, 'inactive_ads'])->name('inactive.adverts');
+    Route::get('admin-adverts-unapproved', [AdvertController::class, 'unapproved_active_ads'])->name('adverts.unapproved');
+    Route::get('admin-payments-pending', [AdvertController::class, 'payment_pending'])->name('payments.pending');
 
-      Route::get('/admin-approve-advert/{id}', [AdvertController::class, 'admin_approve_advert'])->name('admin.approve.advert');
-      Route::get('/admin-status-advert/{id}', [AdvertController::class, 'admin_status_advert'])->name('admin.status.advert');
-
-
-
-      //admin vendor
-      Route::get('/admin-create-new-advert', [AdvertController::class, 'vend_new_ad'])->name('admin.new.advert');
-      Route::post('/admin-save-new-advert', [AdvertController::class, 'admin_ven_cat'])->name('admin.store.advert');
-      Route::post('admin-create-new-product', [ProductController::class, 'admin_store'])->name('admin.create.product');
-      Route::post('admin-create-new-service', [ServiceController::class, 'admin_store'])->name('admin.create.service');
-      Route::post('admin-create-new-ride', [RideController::class, 'admin_store'])->name('admin.create.ride');
-      Route::post('admin-upload-images', [ImageController::class, 'admin_uploadImages'])->name('admin.upload.images');
-
-      Route::get('/admin-vendor-items/{id}', [AdvertController::class, 'vend_items'])->name('vendor.items');
-
-      //Admin vendor items
-      Route::get('/admin-vendor-product-show/{id}', [ProductController::class, 'admin_product_show'])->name('admin.prod.show');
-      Route::get('/admin-vendor-service-show/{id}', [ServiceController::class, 'admin_service_show'])->name('admin.serv.show');
-      Route::get('/admin-vendor-ride-show/{id}', [RideController::class, 'admin_ride_show'])->name('admin.ride.show');
-
-      //
-      Route::get('/admin-approve-ride/{id}', [RideController::class, 'admin_approve_ride'])->name('admin.approve.ride');
-      Route::get('/admin-status-ride/{id}', [RideController::class, 'admin_status_ride'])->name('admin.status.ride');
-      Route::get('/admin-approve-service/{id}', [ServiceController::class, 'admin_approve_service'])->name('admin.approve.service');
-      Route::get('/admin-status-service/{id}', [ServiceController::class, 'admin_status_service'])->name('admin.status.service');
-      Route::get('/admin-approve-product/{id}', [ProductController::class, 'admin_approve_product'])->name('admin.approve.product');
-      Route::get('/admin-status-product/{id}', [ProductController::class, 'admin_status_product'])->name('admin.status.product');
+    Route::get('/admin-approve-advert/{id}', [AdvertController::class, 'admin_approve_advert'])->name('admin.approve.advert');
+    Route::get('/admin-status-advert/{id}', [AdvertController::class, 'admin_status_advert'])->name('admin.status.advert');
 
 
-      ///Advert Order      
-      Route::get('admin-order-page/{id}', [AdvertController::class, 'order_page'])->name('admin.order.page');
-      Route::post('admin-order-advert', [PaymentController::class, 'order_advert'])->name('admin.order.advert');
+
+    //admin vendor
+    Route::get('/admin-create-new-advert', [AdvertController::class, 'vend_new_ad'])->name('admin.new.advert');
+    Route::post('/admin-save-new-advert', [AdvertController::class, 'admin_ven_cat'])->name('admin.store.advert');
+    Route::post('admin-create-new-product', [ProductController::class, 'admin_store'])->name('admin.create.product');
+    Route::post('admin-create-new-service', [ServiceController::class, 'admin_store'])->name('admin.create.service');
+    Route::post('admin-create-new-ride', [RideController::class, 'admin_store'])->name('admin.create.ride');
+    Route::post('admin-upload-images', [ImageController::class, 'admin_uploadImages'])->name('admin.upload.images');
+
+    Route::get('/admin-vendor-items/{id}', [AdvertController::class, 'vend_items'])->name('vendor.items');
+
+    //Admin vendor items
+    Route::get('/admin-vendor-product-show/{id}', [ProductController::class, 'admin_product_show'])->name('admin.prod.show');
+    Route::get('/admin-vendor-service-show/{id}', [ServiceController::class, 'admin_service_show'])->name('admin.serv.show');
+    Route::get('/admin-vendor-ride-show/{id}', [RideController::class, 'admin_ride_show'])->name('admin.ride.show');
+
+    //
+    Route::get('/admin-approve-ride/{id}', [RideController::class, 'admin_approve_ride'])->name('admin.approve.ride');
+    Route::get('/admin-status-ride/{id}', [RideController::class, 'admin_status_ride'])->name('admin.status.ride');
+    Route::get('/admin-approve-service/{id}', [ServiceController::class, 'admin_approve_service'])->name('admin.approve.service');
+    Route::get('/admin-status-service/{id}', [ServiceController::class, 'admin_status_service'])->name('admin.status.service');
+    Route::get('/admin-approve-product/{id}', [ProductController::class, 'admin_approve_product'])->name('admin.approve.product');
+    Route::get('/admin-status-product/{id}', [ProductController::class, 'admin_status_product'])->name('admin.status.product');
+
+
+    ///Advert Order
+    Route::get('admin-order-page/{id}', [AdvertController::class, 'order_page'])->name('admin.order.page');
+    Route::post('admin-order-advert', [PaymentController::class, 'order_advert'])->name('admin.order.advert');
 
 
     //Company
@@ -120,7 +127,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/admin-view-product/{id}', [ProductController::class, 'prodview'])->name('admin.product.show');
     Route::post('upload-images', [ImageController::class, 'uploadImages'])->name('upload.images');
 
-     //service
+    //service
     Route::post('create-new-service', [ServiceController::class, 'store'])->name('create.service');
     Route::post('upload-images', [ImageController::class, 'uploadImages'])->name('upload.images');
 
@@ -139,7 +146,7 @@ Route::middleware(['auth','verified'])->group(function () {
     //Customer
     Route::post('create-new-customer', [ProfileController::class, 'cusstore'])->name('create.customer');
     Route::get('/view-customer/{id}', [ProfileController::class, 'cusview'])->name('customer.show');
-    
+
 
 
     Route::get('/terms-and-conditions', [PagesController::class, 'terms'])->name('terms');
@@ -160,4 +167,4 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/logout', [ProfileController::class, 'perform'])->name('logout.perform');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

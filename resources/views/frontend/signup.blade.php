@@ -10,38 +10,38 @@
     <meta name="description" content="AGII NG">
     <meta name="author" content="p-themes">
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/logo.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/logo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/frontend/assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/frontend/assets/images/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/frontend/assets/images/logo.png">
     <meta name="msapplication-TileColor" content="#cc9966">
-    <meta name="msapplication-config" content="assets/images/icons/browserconfig.xml">
+    <meta name="msapplication-config" content="/frontend/assets/images/icons/browserconfig.xml">
     <meta name="theme-color" content="#8fc74a">
-    <link rel="stylesheet" href="assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/frontend/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css">
     <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/plugins/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/plugins/jquery.countdown.css">
+    <link rel="stylesheet" href="/frontend/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/frontend/assets/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/frontend/assets/css/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="/frontend/assets/css/plugins/jquery.countdown.css">
     <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/frontend/assets/css/bootstrap.min.css">
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/frontend/assets/css/style.css">
     <link rel="stylesheet" href="css/logo.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="assets/css/plugins/owl-carousel/owl.carousel.css">
-    <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
+    <link rel="stylesheet" href="/frontend/assets/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/frontend/assets/css/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="/frontend/assets/css/plugins/nouislider/nouislider.css">
 </head>
 
 <body>
-    
+
 
   <div class="page-wrapper">
     <header class="header header-14">
         <div class="header-top">
             <div class="container">
                 <div class="header-left">
-                    <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
+                    <a href="tel:#"><i class="icon-phone"></i>Call: +234 913 500 0738</a>
                 </div><!-- End .header-left -->
 
                 <div class="header-right">
@@ -70,25 +70,25 @@
         </div><!-- End .header-top -->
     </header>
 
-    <div class="container-fluid p-0">
+    <div class="p-0 container-fluid">
         <!-- Site Logo -->
         <div class="row justify-content-center">
-            <div class="col-12 text-center">
+            <div class="text-center col-12">
                 <a href="index.html">
                     <img src="images/Agiilogo2.png" alt="Site Logo" class="img-fluid" style="height: 170px; width: auto;">
                 </a>
             </div>
         </div>
-    
+
     </div>
-   
-    <section class="signin-page account">
+
+    <section class="signup-page account">
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-md-6 col-md-offset-3">
             <div class="block text-center">
               <h2 class="text-center">Create Your Account</h2>
-          <form class="text-left clearfix" action="index.html">
+          <form class="clearfix text-left" action="index.html">
             <div class="form-group">
               <input type="text" class="form-control"  placeholder="First Name">
             </div>
@@ -105,7 +105,7 @@
               <input type="password" class="form-control"  placeholder="Password">
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-main text-center">Create account</button>
+              <button type="submit" class="text-center btn btn-main">Create account</button>
             </div>
              <a href="#" class="btn btn-google btn-user btn-block">
                   <i class="fa fa-google"></i> Login with Google
@@ -122,22 +122,22 @@
         </div>
       </div>
     </section>
-    
+
     <style>
-      .signin-page {
+      .signup-page {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh; /* Full viewport height */
         background-color: #f9f9f9;
       }
-    
+
       .block {
         padding: 20px;
         background: #fff;
         border-radius: 10px;
        }
-    
+
       .btn-main {
         background-color:#8fc74a;
         color: #fff;
@@ -146,7 +146,7 @@
         border-radius: 5px;
         cursor: pointer;
       }
-    
+
       .btn-main:hover {
         background-color: #8fc74a;
       }
@@ -159,7 +159,7 @@
 	            	<div class="row" st>
 	            		<div class="col-sm-6 col-lg-3">
 	            			<div class="widget widget-about">
-	            				<img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
+	            				<img src="/frontend/assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
 	            				<p style="color: white;">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
 
 	            				<div class="social-icons">
@@ -203,7 +203,7 @@
 
 	            				<ul class="widget-list">
 	            					<li><a href="#">Sign In</a></li>
-	            					
+
 	            				</ul><!-- End .widget-list -->
 	            			</div><!-- End .widget -->
 	            		</div><!-- End .col-sm-6 col-lg-3 -->
@@ -215,26 +215,26 @@
 	        	<div class="container">
 	        		<p class="footer-copyright" style="color: white;">Copyright © 2025 Agii NG. All Rights Reserved.</p><!-- End .footer-copyright -->
 	        		<figure class="footer-payments">
-	        			<img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
+	        			<img src="/frontend/assets/images/payments.png" alt="Payment methods" width="272" height="20">
 	        		</figure><!-- End .footer-payments -->
 	        	</div><!-- End .container -->
 	        </div><!-- End .footer-bottom -->
         </footer><!-- End .footer -->
     </div><!-- End .page-wrapper -->
-    
+
 
     <!-- Plugins JS File -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/jquery.hoverIntent.min.js"></script>
-    <script src="assets/js/jquery.waypoints.min.js"></script>
-    <script src="assets/js/superfish.min.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="assets/js/wNumb.js"></script>
-    <script src="assets/js/bootstrap-input-spinner.js"></script>
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/js/nouislider.min.js"></script>
+    <script src="/frontend/assets/js/jquery.min.js"></script>
+    <script src="/frontend/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/frontend/assets/js/jquery.hoverIntent.min.js"></script>
+    <script src="/frontend/assets/js/jquery.waypoints.min.js"></script>
+    <script src="/frontend/assets/js/superfish.min.js"></script>
+    <script src="/frontend/assets/js/owl.carousel.min.js"></script>
+    <script src="/frontend/assets/js/wNumb.js"></script>
+    <script src="/frontend/assets/js/bootstrap-input-spinner.js"></script>
+    <script src="/frontend/assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="/frontend/assets/js/nouislider.min.js"></script>
     <!-- Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="/frontend/assets/js/main.js"></script>
 </body>
 </html>

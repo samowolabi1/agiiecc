@@ -25,6 +25,10 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->longText('short_description')->nullable();
             $table->longText('description')->nullable();
+            $table->string('productMainImage')->nullable();
+            $table->string('image2')->nullable();
+            $table->string('image3')->nullable();
+            $table->string('image4')->nullable();
             $table->string('status');
             $table->string('approved')->default('NOT APPROVED');
             $table->string('created_by')->default('system');
@@ -35,7 +39,6 @@ return new class extends Migration
             $table->string('brand')->nullable();
             $table->string('tags')->nullable();
             $table->timestamps();
-
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('company_id')->references('id')->on('companies')->onUpdate('cascade')->onDelete('cascade');

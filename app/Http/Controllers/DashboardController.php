@@ -40,27 +40,48 @@ class DashboardController extends Controller
             'firstname' => 'required|regex:/^[a-zA-Z]+$/',
             'lastname' => 'required|regex:/^[a-zA-Z]+$/',
             'email' => 'required|email',
-            'old_password' => 'required',
-            'password' => 'required|min:6',
-            'confirm_password' => 'required|same:password|min:6',
+            'country' => 'required',
+            'dob' => 'required|date',
+            'phoneNumber' => 'required',
+            'password' => 'nullable|min:6',
+            'confirm_password' => 'nullable|same:password|min:6',
         ]);
 
         $user = auth()->user();
 
-        // Verify old password
-        if (!Hash::check($request->old_password, $user->password)) {
-            return back()->withErrors(['old_password' => 'Old password is incorrect.']);
+        if (!$request->filled('password')) {
+            // Update user info without password
+            $user->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'country' => $request->country,
+                'phoneNumber' => $request->phoneNumber,
+                'address1' => $request->address,
+                'dob' => $request->dob,
+            ]);
+
+        } else {
+            // Verify old password
+            if (!Hash::check($request->old_password, $user->password)) {
+                return back()->withErrors(['old_password' => 'Old password is incorrect.']);
+            }
+
+            // Update user info with new password
+            $user->update([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'email' => $request->email,
+                'country' => $request->country,
+                'phoneNumber' => $request->phoneNumber,
+                'address1' => $request->address,
+                'dob' => $request->dob,
+                'password' => Hash::make($request->password),
+            ]);
         }
 
-        // Update user info
-        $user->update([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
         return back()->with('success', 'Profile updated successfully.');
+
     }
 
 }

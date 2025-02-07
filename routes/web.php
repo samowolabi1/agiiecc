@@ -54,8 +54,8 @@ Route::get('/mail-testing', [PagesController::class, 'maily'])->name('mail.test'
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/admin_dashboard', [PagesController::class, 'admin_board'])->middleware(['auth', 'role:admin'])->name('admin.index');
-    Route::get('/agent_dashboard', [PagesController::class, 'agent_board'])->middleware(['auth', 'role:customer'])->name('agent.index');
-    Route::get('/dashboard', [PagesController::class, 'user_board'])->middleware(['auth', 'role:vendor'])->name('dashboard');
+    Route::get('/agent_dashboard', [PagesController::class, 'agent_board'])->middleware(['auth', 'role:vendor'])->name('agent.index');
+    Route::get('/dashboard', [PagesController::class, 'user_board'])->middleware(['auth', 'role:customer'])->name('dashboard');
 
     //
     Route::get('/user-items', [ItemController::class, 'userItems'])->name('userItem');

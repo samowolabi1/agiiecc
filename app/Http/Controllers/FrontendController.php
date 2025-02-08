@@ -40,6 +40,7 @@ class FrontendController extends Controller
 
     public function product(Product $product)
     {
+        
         $product->load(['company', 'images']);
         $relatedProducts = Product::inRandomOrder()
         ->where('id', '!=', $product->id)  // Exclude the current product

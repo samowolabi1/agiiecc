@@ -30,6 +30,8 @@ class PagesController extends Controller
     {
         // return view('user.dashboard');
 
+        return "welcome";
+
         $user = Auth::user();
 
         return view('frontend.dashboard', compact('user'));
@@ -42,7 +44,6 @@ class PagesController extends Controller
 
     public function index()
     {
-
 
         $students = Student::orderBy('id', 'desc')->get();
 

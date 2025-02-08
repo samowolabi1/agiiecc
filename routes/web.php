@@ -62,8 +62,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     ////payment
     // Route::post('admin-', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
-    Route::post('/pay', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
-    Route::get('/payment/callback', [App\Http\Controllers\PaymentController::class, 'handleGatewayCallback'])->name('payment');
+    Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
+    Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
 
     //Sales
     Route::get('/my-sales', [SaleController::class, 'user_index'])->name('my.sales');

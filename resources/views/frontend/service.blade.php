@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css">
   <link href="css/styles.css" rel="stylesheet" />
   <link href="css/responsive.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/frontend/assets/styles/style.css" />
+  <link rel="stylesheet" href="./assets/styles/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 </head>
@@ -213,7 +213,7 @@
                     <option value="other">Other (Specify in Message)</option>
                 </select>
             </div>
-
+            
               <div class="form-group col-lg-4">
                 <label for="inputHouseAddress">House Address </label>
                 <input type="text" class="form-control" id="inputHouseAddress" placeholder="">
@@ -255,7 +255,7 @@
 <br>
 <br>
   <section class="about_section">
-    <div class="container  ">
+    <div class="container ">
       <div class="row">
         <div class="col-md-6 ">
           <div class="img-box">
@@ -297,7 +297,7 @@
       </div>
       <div class="row">
           <div class="col-md-6 col-lg-3">
-              <div class="box text-center">
+              <div class="text-center box">
                   <div class="icon-box" style="color: #8fc74a;">
                       <i class="fas fa-broom fa-3x"></i>
                   </div>
@@ -309,7 +309,7 @@
               </div>
           </div>
           <div class="col-md-6 col-lg-3">
-              <div class="box text-center">
+              <div class="text-center box">
                   <div class="icon-box">
                       <i class="fas fa-tools fa-3x" style="color: #8fc74a;"></i>
                   </div>
@@ -321,7 +321,7 @@
               </div>
           </div>
           <div class="col-md-6 col-lg-3">
-              <div class="box text-center">
+              <div class="text-center box">
                   <div class="icon-box">
                       <i class="fas fa-wrench fa-3x" style="color: #8fc74a;"></i>
                   </div>
@@ -333,7 +333,7 @@
               </div>
           </div>
           <div class="col-md-6 col-lg-3">
-              <div class="box text-center">
+              <div class="text-center box">
                   <div class="icon-box">
                       <i class="fas fa-tshirt fa-3x" style="color: #8fc74a;"></i>
                   </div>
@@ -346,7 +346,7 @@
           </div>
       </div>
   </div>
-
+  
   </section>
 
   <!-- end treatment section -->
@@ -362,7 +362,7 @@
       </div>
     </div>
     <div class="container px-0">
-      <div id="customCarousel2" class="carousel  carousel-fade" data-ride="carousel">
+      <div id="customCarousel2" class="carousel carousel-fade" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="box">
@@ -500,6 +500,7 @@
   <script src="js/custom.js"></script>
 
 
+  
 </body>
 
 </html>

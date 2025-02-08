@@ -213,7 +213,7 @@
                     <option value="other">Other (Specify in Message)</option>
                 </select>
             </div>
-            
+
               <div class="form-group col-lg-4">
                 <label for="inputHouseAddress">House Address </label>
                 <input type="text" class="form-control" id="inputHouseAddress" placeholder="">
@@ -346,7 +346,7 @@
           </div>
       </div>
   </div>
-  
+
   </section>
 
   <!-- end treatment section -->
@@ -500,7 +500,7 @@
   <script src="js/custom.js"></script>
 
 
-  
+
 </body>
 
 </html>

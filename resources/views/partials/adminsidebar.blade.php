@@ -120,6 +120,19 @@
                 </div>
             </li>
 
+             <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                    
+                <a class="nav-link" href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Log Out</span></a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    </form>
+      
+            </li>
+
             <!-- Divider -->
            
 

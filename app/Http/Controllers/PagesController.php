@@ -30,7 +30,7 @@ class PagesController extends Controller
     {
         // return view('user.dashboard');
 
-        return "welcome";
+        //return "welcome";
 
         $user = Auth::user();
 
@@ -39,7 +39,8 @@ class PagesController extends Controller
 
     public function agent_board()
     {
-        return view('agent.dashboard');
+        //return "welcome";
+        return view('frontend.vendordashboard');
     }
 
     public function index()

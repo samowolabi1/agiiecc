@@ -144,28 +144,31 @@
 
                         <div class="options">
                             <button>Ride</button>
-                            <button>Courier</button>
+                            {{-- <button>Courier</button> --}}
                         </div>
 
-                        <div class="form-group">
-                            <label for="pickup">Pickup Location</label>
-                            <input type="text" id="pickup" placeholder="Enter pickup location">
-                        </div>
+                        <form action="{{ route('rider.getprice')}}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="pickup">Pickup Location</label>
+                                <input type="text" id="pickup" placeholder="Enter pickup location">
+                            </div>
 
-                        <div class="form-group">
-                            <label for="dropoff">Dropoff Location</label>
-                            <input type="text" id="dropoff" placeholder="Enter dropoff location">
-                        </div>
+                            <div class="form-group">
+                                <label for="dropoff">Dropoff Location</label>
+                                <input type="text" id="dropoff" placeholder="Enter dropoff location">
+                            </div>
 
-                        <div class="form-inline">
-                            <select>
-                                <option>Today</option>
-                                <option>Tomorrow</option>
-                            </select>
-                            <input type="time" value="12:00">
-                        </div>
+                            {{-- <div class="form-inline">
+                                <select>
+                                    <option>Today</option>
+                                    <option>Tomorrow</option>
+                                </select>
+                                <input type="time" value="12:00" >
+                            </div> --}}
 
-                        <button class="see-prices">See Prices</button>
+                            <button class="see-prices" type="submit">See Prices</button>
+                        </form>
                     </div>
 
 

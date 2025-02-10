@@ -45,11 +45,17 @@ Route::get('/mail-testing', [PagesController::class, 'maily'])->name('mail.test'
 Route::middleware(['auth', 'verified'])->group(function () {
 
 
-    Route::get('/admin_dashboard', [PagesController::class, 'admin_board'])->middleware(['role:admin'])->name('admin.index');
-    //Route::get('/agent_dashboard', [PagesController::class, 'agent_board'])->middleware(['role:vendor'])->name('agent.index');
-    Route::get('/agent_dashboard', [PagesController::class, 'agent_board'])->middleware(['role:vendor'])->name('agent.index');
+    // Route::get('/admin_dashboard', [PagesController::class, 'admin_board'])->middleware(['role:admin'])->name('admin.index');
+    // Route::get('/agent_dashboard', [PagesController::class, 'agent_board'])->middleware(['role:vendor'])->name('agent.index');
+    // Route::get('/vendor_dashboard', [PagesController::class, 'vendor_board'])->middleware(['role:vendor'])->name('vendor.index');
 
-    Route::get('/dashboard', [PagesController::class, 'user_board'])->middleware(['role:customer'])->name('dashboard');
+
+
+
+    Route::get('/dashboard', [PagesController::class, 'user_redirect'])->name('dashboard');
+    Route::get('/admin_dashboard', [PagesController::class, 'admin_board'])->name('admin.index');
+    Route::get('/vendor_dashboard', [PagesController::class, 'vendor_board'])->name('vendor.index');
+    Route::get('/user_dashboard', [PagesController::class, 'user_board'])->name('customer.index');
 
     //
     Route::get('/user-items', [ItemController::class, 'userItems'])->name('userItem');

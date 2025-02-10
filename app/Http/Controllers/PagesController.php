@@ -20,6 +20,34 @@ use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
+
+    public function user_redirect(){
+
+        $user = Auth::user();
+
+        if($user->department_id == 1){
+
+            return redirect()->route('admin.index');
+
+
+        }elseif ($user->department_id == 2) {
+            
+             return redirect()->route('admin.index');
+
+        }elseif($user->department_id == 3) {
+            
+            return redirect()->route('vendor.index');
+
+        }elseif($user->department_id == 5) {
+            
+            return redirect()->route('customer.index');
+
+        }else{
+
+            return redirect()->route('dashboard');
+        }
+
+    }
     public function admin_board()
     {
         //return "This is fr admin";
@@ -28,19 +56,16 @@ class PagesController extends Controller
 
     public function user_board()
     {
-        // return view('user.dashboard');
-
-        //return "welcome";
-
+       
         $user = Auth::user();
 
         return view('frontend.dashboard', compact('user'));
     }
 
-    public function agent_board()
+    public function vendor_board()
     {
         //return "welcome";
-        return view('frontend.vendordashboard');
+        return view('user.dashboard');
     }
 
     public function index()

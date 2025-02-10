@@ -99,7 +99,7 @@
             <!-- Site Logo -->
             <div class="row">
                 <div class="text-center col-12">
-                    <a href="index.html">
+                    <a href="/">
                         <img src="/frontend/images/Agiilogo2.png" alt="Site Logo" class="img-fluid"
                             style="height: 170px; width: auto;">
                     </a>
@@ -150,8 +150,8 @@
                                 <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
 
                                 <ul class="widget-list">
-                                    <li><a href="about.html">About Agii NG</a></li>
-                                    <li><a href="#">How to shop on Agii Ng</a></li>
+                                    <li><a href="/about">About Agii NG</a></li>
+                                    {{-- <li><a href="#">How to shop on Agii Ng</a></li> --}}
                                     <li><a href="#">FAQ</a></li>
                                     @if (!auth()->user())
                                         <li><a href="{{ url('login') }}">Log in</a></li>
@@ -165,9 +165,9 @@
                                 <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
 
                                 <ul class="widget-list">
-                                    <li><a href="contact.html">Contact us</a></li>
-                                    <li><a href="#">Terms and conditions</a></li>
-                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="/contact">Contact us</a></li>
+                                    {{-- <li><a href="#">Terms and conditions</a></li> --}}
+                                    {{-- <li><a href="#">Privacy Policy</a></li> --}}
                                 </ul><!-- End .widget-list -->
                             </div><!-- End .widget -->
                         </div><!-- End .col-sm-6 col-lg-3 -->
@@ -177,7 +177,9 @@
                                 <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
 
                                 <ul class="widget-list">
-                                    <li><a href="#">Sign In</a></li>
+                                    @if (!auth()->user())
+                                        <li><a href="{{ url('login') }}">Log in</a></li>
+                                    @endif
 
                                 </ul><!-- End .widget-list -->
                             </div><!-- End .widget -->

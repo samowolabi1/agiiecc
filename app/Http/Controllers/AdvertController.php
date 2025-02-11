@@ -79,8 +79,9 @@ class AdvertController extends Controller
 
     public function show_ads($id){
 
-        $adverts = Advert::find($id);
-        $advertfee = Advertfee::all();
+
+      $adverts = Advert::find($id);        
+      $advertfee = Advertfee::all();
 
         //return $products;
 
@@ -332,10 +333,21 @@ class AdvertController extends Controller
             
             }
 
+        if ($adverts->advertfee->id == 1) {
+                        
+                return redirect()->back()->with('error','Select a subscription plan');
+            
+            }
+
         $advertfee = Advertfee::all();
+
+        $tax = $adverts->advertfee->tax / 100;
+        $advCost = $adverts->advertfee->cost + $tax + $adverts->advertfee->charge;
+        $paystackCost = $advCost * 100;
+        $orderId = 'AG00'.str()->random(5);
 
         //return $products;
 
-        return view('payment.orderpage', compact('adverts','advertfee'));
+        return view('payment.orderpage', compact('adverts','advertfee','advCost','paystackCost','orderId'));
     }
 }

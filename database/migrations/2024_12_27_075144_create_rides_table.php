@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('rides', function (Blueprint $table) {
             $table->id();
+            $table->string('rideid')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('company_id')->unsigned();
             $table->bigInteger('ridetype_id')->unsigned();

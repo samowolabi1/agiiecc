@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
 use App\Models\Payment;
+use App\Models\Transaction;
 use App\Models\Product;
 use App\Models\Advert;
 use App\Models\Advertfee;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Redirect;
 use Paystack;
 use Student;
 use Exception;
+use Auth;
 
 
 class PaymentController extends Controller
@@ -177,47 +179,47 @@ class PaymentController extends Controller
             
     }
 
-    private function createToken($cardData){
-        $token = null;
-        try {
-            $token = $this->stripe->tokens->create([
-                'card' => [
-                    'number' => $cardData['cardNumber'],
-                    'exp_month' => $cardData['month'],
-                    'exp_year' => $cardData['year'],
-                    'cvc' => $cardData['cvv']
-                ]
-            ]);
-        } catch (CardException $e) {
-            $token['error'] = $e->getError()->message;
-        } catch (Exception $e) {
-            $token['error'] = $e->getMessage();
-        }
-        return $token;
-    }
 
 
-    private function createCharge($tokenId, $amount, $description){
-        $charge = null;
-        try {
-            $charge = $this->stripe->charges->create([
-                'amount' => $amount,
-                'currency' => 'usd',
-                'source' => $tokenId,
-                'description' => $description
-            ]);
-        } catch (Exception $e) {
-            $charge['error'] = $e->getMessage();
-        }
-        return $charge;
-    }
 
     ///paystack
+    {"email":"chris@agiing.com","orderID":"AG00JZWsv","amount":"270007","quantity":"1","currency":"NGN","metadata":"{\"key_name\":\"value\"}","reference":"Q5B1U4fMr5Vf6bGFNLVCLbebN","_token":"Q8KxBLGr8JwB4Rf28N2EA7NilRC2yw6baMaQBBYZ","advert_id":"1","advertfee_id":"3","product_id":"1"}
 
-     public function redirectToGateway(Request $request)
+    public function redirectToGateway(Request $request)
     {
+        return $request->all();
+
+        $rules = [
+                'amount' => 'required',
+                'advert_id' => 'required',
+            ];
+
+            $validator = Validator::make($request->all(), $rules);
+
+            if ($validator->fails()) {
+                return response([
+                    'error_msg' => $validator->errors(),
+                ], 400);
+            }
+
+
+            $payment = Payment::create([
+                    'department_id' => 2,
+                    'firstname' => $request->firstname,
+                    'lastname' => $request->lastname,
+                    'sex' => $request->sex,
+                    'email' => $request->email,
+                    'email_verified_at' => now(),
+                    'password' => bcrypt($request->password),
+                ]);
+
+
         try{
+
+
             return Paystack::getAuthorizationUrl()->redirectNow();
+
+
         }catch(\Exception $e) {
             return Redirect::back()->withMessage(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
         }        
@@ -225,34 +227,11 @@ class PaymentController extends Controller
 
     public function handleGatewayCallback()
     {
-     //Getting authenticated user 
-        $id = Auth::id();
-        // Getting the specific student and his details
-        $student = Student::where('user_id',$id)->first();
-        $class_id = $student->class_id;
-        $section_id = $student->section_id; 
-        $level_id = $student->level_id; 
-        $student_id = $student->id; 
-        
-        $paymentDetails = Paystack::getPaymentData(); //this comes with all the data needed to process the transaction
-        // Getting the value via an array method
-        $inv_id = $paymentDetails['data']['metadata']['invoiceId'];// Getting InvoiceId I passed from the form
-        $status = $paymentDetails['data']['status']; // Getting the status of the transaction
-        $amount = $paymentDetails['data']['amount']; //Getting the Amount
-        $number = $randnum = rand(1111111111,9999999999);// this one is specific to application
-        $number = 'year'.$number;
-        // dd($status);
-        if($status == "success"){ //Checking to Ensure the transaction was succesful
-          
-            Payment::create(['student_id' => $student_id,'invoice_id'=>$inv_id,'amount'=>$amount,'status'=>1]); // Storing the payment in the database
-            Student::where('user_id', $id)
-                  ->update(['register_no' => $number,'acceptance_status' => 1]);
-                  
-            return view('student.studentFees'); 
-        }
-      
+        $paymentDetails = Paystack::getPaymentData();
+
+        dd($paymentDetails);
         // Now you have the payment details,
-        // you can store the authorization_code in your DB to allow for recurrent subscriptions
+        // you can store the authorization_code in your db to allow for recurrent subscriptions
         // you can then redirect or do whatever you want
     }
 

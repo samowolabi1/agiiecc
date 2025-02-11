@@ -70,35 +70,90 @@ popup.resumeTransaction(access_code)
                             <div class="card shadow mb-4">
                               
                                <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary">ADVERT ORDER INFORMATION</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">PAYMENT INFORMATION</h6>
                                         </div>
 
-                                      <form action="/save-order-and-pay" method="POST">
-                                      @csrf 
-  <input type="hidden" name="user_email" value="soludareowo@gmail.com"> 
-  <input type="hidden" name="amount" value="5000000"> 
-  <input type="hidden" name="cartid" value="22"> 
-  <button type="submit" name="pay_now" id="pay-now" title="Pay now">Pay now</button>
-</form>
 
                                         <table style="border:0px;" class="table table-hover">
                                               
                                             <tr>                          
-                                              <td style="border:0px;"><strong>Total Days Running: </strong></td>
-                                              <td style="border:0px;">0</td>
+                                              <td style="border:0px;"><strong>Title: </strong></td>
+                                              <td style="border:0px;">{{$adverts->advertfee->name ?? ''}}</td>
 
-                                              <td style="border:0px;"><strong>Total Days Remaining: </strong></td>
-                                              <td style="border:0px;">0</td>
+                                              <td style="border:0px;"><strong>Tenor: </strong></td>
+                                              <td style="border:0px;">{{$adverts->advertfee->tenor ?? ''}}</td>
+                                            </tr>
+
+                                             <tr>
+                                              <td style="border:0px;"><strong>Months: </strong></td>
+                                              <td style="border:0px;">{{$adverts->advertfee->months ?? ''}}</td>
+
+                                              <td style="border:0px;"><strong>Days: </strong></td>
+                                              <td style="border:0px;">{{$adverts->advertfee->days ?? ''}}</td>
+                                              
                                             </tr>
 
                                             <tr>
-                                              <td style="border:0px;"><strong>Renewal Date </strong></td>
-                                              <td style="border:0px;">0</td>
+                                              <td style="border:0px;"><strong>Cost: </strong></td>
+                                              <td style="border:0px;">&#x20a6;{{number_format($adverts->advertfee->cost ?? '')}}</td>
 
-                                              <td style="border:0px;"><strong>Date Advert Started</strong></td>
-                                              <td style="border:0px;">0</td>  
+
+                                              <td style="border:0px;"><strong>Tax: </strong></td>
+                                              <td style="border:0px;">{{$adverts->advertfee->tax ?? ''}}%</td>
+                                            </tr>
+
+                                            <tr>
+                                              <td style="border:0px;"><strong>Charges: </strong></td>
+                                              <td style="border:0px;">{{$adverts->advertfee->charges ?? ''}}</td>
+
+                                              <td style="border:0px;"><strong>Expires In: </strong></td>
+                                              <td style="border:0px;">{{\Carbon\Carbon::now()->addMonths($adverts->advertfee->months)}}
+
+                                              </td>
+
+                                                
+                                            </tr>
+
+                                            </tr>
+
+                                             <tr>
+                                              <td class="text-danger" style="border:0px;"><strong>TOTAL AMOUNT: </strong></td>
+                                              <td class="text-danger" style="border:0px;"><strong>
+                                                &#x20a6;{{number_format($advCost)}}
+
+                                              </strong></td>
+
+                                                
                                             </tr>
                                         </table>
+
+                                      <form method="POST" action="{{ route('payment') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+                                        <div class="row" style="margin-bottom:40px;">
+                                            <div class="col-md-12">
+                                                
+                                              <input type="hidden" name="email" value="{{$adverts->user->email}}"> 
+                                                <input type="hidden" name="orderID" value="{{$orderId}}">
+                                                <input type="hidden" name="amount" value="{{$advCost * 100}}"> 
+                                                <input type="hidden" name="quantity" value="1">
+                                                <input type="hidden" name="currency" value="NGN">
+                                                <input type="hidden" name="metadata" value="{{ json_encode($array = ['key_name' => 'value',]) }}" > 
+                                                <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> 
+
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}"> 
+
+                                                <input type="hidden" name="advert_id" value="{{$adverts->id}}">
+                                                <input type="hidden" name="advertfee_id" value="{{$adverts->advertfee->id}}">
+                                                <input type="hidden" name="product_id" value="{{$adverts->product->id}}">
+                                                <input type="hidden" name="user_id" value="{{$adverts->user->id}}">
+
+                                                <p>
+                                                    <button class="btn btn-success btn-block" type="submit" value="Pay Now!">
+                                                         PAY  &#x20a6;{{number_format($advCost)}} NOW!
+                                                    </button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </form>
                               
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary"> Vendor Details :- {{$adverts->user->firstname}}  {{$adverts->user->lastname}} - Email: {{$adverts->user->email}}</h6>
@@ -150,50 +205,7 @@ popup.resumeTransaction(access_code)
                                                    <td style="border:0px;"><strong>Date Created</strong></td>
                                                   <td style="border:0px;">{{$adverts->created_at->isoFormat('MMMM Do YYYY')}}</td>  
                                                 </tr>
-                                            </table> 
-
-                                          <div class="card-header py-3">
-                                            <h6 class="m-0 font-weight-bold text-primary"> SUBSCRIPTION INFORMATION</h6>
-                                        </div>
-
-                                        <table style="border:0px;" class="table table-hover">
-                                              
-                                            <tr>                          
-                                              <td style="border:0px;"><strong>Title: </strong></td>
-                                              <td style="border:0px;">{{$adverts->advertfee->name ?? ''}}</td>
-
-                                              <td style="border:0px;"><strong>Tenor: </strong></td>
-                                              <td style="border:0px;">{{$adverts->advertfee->tenor ?? ''}}</td>
-                                            </tr>
-
-                                             <tr>
-                                              <td style="border:0px;"><strong>Months: </strong></td>
-                                              <td style="border:0px;">{{$adverts->advertfee->months ?? ''}}</td>
-
-                                              <td style="border:0px;"><strong>Days: </strong></td>
-                                              <td style="border:0px;">{{$adverts->advertfee->days ?? ''}}</td>
-                                              
-                                            </tr>
-
-                                            <tr>
-                                              <td style="border:0px;"><strong>Cost: </strong></td>
-                                              <td style="border:0px;">&#x20a6;{{number_format($adverts->advertfee->cost ?? '')}}</td>
-
-
-                                              <td style="border:0px;"><strong>Tax: </strong></td>
-                                              <td style="border:0px;">{{$adverts->advertfee->tax ?? ''}}%</td>
-                                            </tr>
-
-                                            <tr>
-                                              <td style="border:0px;"><strong>Charges: </strong></td>
-                                              <td style="border:0px;">{{$adverts->advertfee->charges ?? ''}}</td>
-
-                                              
-                                              <td style="border:0px;">
-                                                <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">Create / Change Subscription</a>
-                                                <i class="fab fa-view-f fa-fw"></i></td>  
-                                            </tr>
-                                        </table>                                
+                                            </table>                               
 
                                 
                                         </div>

@@ -13,100 +13,81 @@
       type="image/x-icon"
       href="images/Agiilogo1.png"
     />
+    
     <title>Agii Ride</title>
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/jquery.countdown.css">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="css/logo.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
   </head>
 <style>
 
-.box {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    h1 {
-      font-size: 1.8rem;
-      text-align: center;
-      margin-bottom: 20px;
-      color: #222;
-    }
-
-    .options {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .options button {
-      width: 48%;
-      padding: 10px;
-      font-size: 1rem;
-      color: white;
-      border: 1px solid #ddd;
-      background: #8fc74a;
-      border-radius: 5px;
-      cursor: pointer;
-    
-    }
-
-    .options button:hover {
-      background: #8fc74a;;
-    }
-
-    .form-group {
-      margin-bottom: 15px;
-    }
-
-    .form-group label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .form-group input {
-      width: 100%;
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .form-inline {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .form-inline select, .form-inline input {
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      width: 48%;
-    }
-
-    .see-prices {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      font-size: 1.2rem;
-      text-align: center;
-      color: #fff;
-      background: #8fc74a;;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-
-    .see-prices:hover {
-      background: #444;
-    }
+.main__cta__rectangle {
+            max-width: 450px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;  /* Rounded corners */
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+        .btn-primary {
+            width: 100%;
+            font-size: 18px;
+        }
+        #nearestDriver {
+            margin-top: 10px;
+            font-weight: bold;
+            color: green;
+            text-align: center;
+        }
+    </style>
   </style>
   <body>
+    <header class="header header-14">
+      <div class="header-top">
+          <div class="container">
+              <div class="header-left">
+                  <a href="tel:#"><i class="icon-phone"></i>Call: +234 913 500 0738</a>
+              </div><!-- End .header-left -->
+
+              <div class="header-right">
+
+                  <ul class="top-menu">
+                      <li>
+                          <a href="#">Links</a>
+                          <ul class="menus">
+            <li class="around-me">
+                                  <a href="#">Stores Around me</a>
+                              </li>
+                              <li>
+                                  <div class="header-dropdown">
+                                      <a href="#">Location</a>
+                                      <div class="header-menu">
+                                          <ul>
+                                              <li><a href="#">Ikeja</a></li>
+                                              <li><a href="#">Island</a></li>
+                                              <li><a href="#">Agege</a></li>
+                                          </ul>
+                                      </div><!-- End .header-menu -->
+                                  </div><!-- End .header-dropdown -->
+                              </li>
+                          </ul>
+                      </li>
+                  </ul><!-- End .top-menu -->
+              </div><!-- End .header-right -->
+          </div><!-- End .container -->
+      </div><!-- End .header-top -->
+  </header>
     <header class="" style="background-color: white;">
       <div class="container">
         <nav>
@@ -136,45 +117,21 @@
       </div>
     </header>
 
-    <section id="main__cta">
+    <section id="main__cta" class="d-flex align-items-center justify-content-center vh-100">
       <div class="container">
-        <div class="split">
-          <div class="main__cta__rectangle bg-light">
-            <div class="box align-items-start">
-              <h1 style="color: black;">Go Anywhere with Agii Ride</h1>
-          
-              <div class="options">
-                <button>Ride</button>
-                <button>Courier</button>
+          <div class="main__cta__rectangle">
+              <h4 class="text-center text-dark mb-3">Find a Driver Near You</h4>
+  
+              <div class="mb-3">
+                  <label for="pickup" class="form-label">Enter Your Location</label>
+                  <input type="text" id="pickup" class="form-control" placeholder="Enter your location">
               </div>
-          
-              <div class="form-group">
-                <label for="pickup">Pickup Location</label>
-                <input type="text" id="pickup" placeholder="Enter pickup location">
-              </div>
-          
-              <div class="form-group">
-                <label for="dropoff">Dropoff Location</label>
-                <input type="text" id="dropoff" placeholder="Enter dropoff location">
-              </div>
-          
-              <div class="form-inline">
-                <select>
-                  <option>Today</option>
-                  <option>Tomorrow</option>
-                </select>
-                <input type="time" value="12:00">
-              </div>
-          
-              <button class="see-prices">See Prices</button>
-            </div>
-
-            
+  
+              <button class="btn btn-primary">Find Driver</button>
           </div>
-          <div></div>
-        </div>
       </div>
-    </section>
+  </section>
+  
 
     <section id="business-header">
       <div class="container">
@@ -268,36 +225,91 @@
       </div>
     </section>
 
-    <section id="applications__section">
-      <div class="container">
-        <h3 style="color: black;">Find even more features in our apps</h3>
-        <div class="split">
-          <a data-aos="fade-right" href="#" class="app__card">
-            <span>Agii Ride</span>
-            <p class="app__titre">
-              Download the app for drivers and couriers
-            </p>
-          </a>
-          <a data-aos="fade-left" href="#" class="app__card">
-            <span>Agii Ride</span>
-            <p class="app__titre">Download the Agii Ride app</p>
-          </a>
-        </div>
-      </div>
-    </section>
+    <footer class="footer" style="background-color: #8fc74a; color:white;" >
+      <div class="footer-middle">
+          <div class="container">
+            <div class="row" st>
+              <div class="col-sm-6 col-lg-3">
+                <div class="widget widget-about">
+                  <img src="assets/images/logo.png" class="footer-logo" alt="Footer Logo" width="105" height="25">
+                  <p style="color: white;">Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </p>
 
-    <footer class="bg-dark">
-      <div class="container">
-        <nav>
-          <div><a href="#" class="logo">Agii Ride</a></div>
-          <div>
-            <a href="#">How Agii Ride apps and website work</a>
-          </div>
-        </nav>
-      </div>
-    </footer>
-    <script>
-      AOS.init();
-    </script>
-  </body>
+                  <div class="social-icons">
+                    <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+                  </div><!-- End .soial-icons -->
+                </div><!-- End .widget about-widget -->
+              </div><!-- End .col-sm-6 col-lg-3 -->
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="widget">
+                  <h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+                  <ul class="widget-list">
+                    <li><a href="about.html">About Agii NG</a></li>
+                    <li><a href="#">How to shop on Agii Ng</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="login.html">Log in</a></li>
+                  </ul><!-- End .widget-list -->
+                </div><!-- End .widget -->
+              </div><!-- End .col-sm-6 col-lg-3 -->
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="widget">
+                  <h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+
+                  <ul class="widget-list">
+                    <li><a href="contact.html">Contact us</a></li>
+                    <li><a href="#">Terms and conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                  </ul><!-- End .widget-list -->
+                </div><!-- End .widget -->
+              </div><!-- End .col-sm-6 col-lg-3 -->
+
+              <div class="col-sm-6 col-lg-3">
+                <div class="widget">
+                  <h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+                  <ul class="widget-list">
+                    <li><a href="#">Sign In</a></li>
+                    
+                  </ul><!-- End .widget-list -->
+                </div><!-- End .widget -->
+              </div><!-- End .col-sm-6 col-lg-3 -->
+            </div><!-- End .row -->
+          </div><!-- End .container -->
+      </div><!-- End .footer-middle -->
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p class="footer-copyright" style="color: white;">Copyright © 2025 Agii NG. All Rights Reserved.</p><!-- End .footer-copyright -->
+          <figure class="footer-payments">
+            <img src="assets/images/payments.png" alt="Payment methods" width="272" height="20">
+          </figure><!-- End .footer-payments -->
+        </div><!-- End .container -->
+      </div><!-- End .footer-bottom -->
+    </footer><!-- End .footer -->
+</div><!-- End .page-wrapper -->
+
+
+<!-- Plugins JS File -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/jquery.hoverIntent.min.js"></script>
+<script>
+  AOS.init();
+</script>
+<script src="assets/js/jquery.waypoints.min.js"></script>
+<script src="assets/js/superfish.min.js"></script>
+<script src="assets/js/owl.carousel.min.js"></script>
+<script src="assets/js/wNumb.js"></script>
+<script src="assets/js/bootstrap-input-spinner.js"></script>
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/js/nouislider.min.js"></script>
+<!-- Main JS File -->
+<script src="assets/js/main.js"></script>
+</body>
 </html>

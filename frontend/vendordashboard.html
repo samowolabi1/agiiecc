@@ -23,7 +23,6 @@
     <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="assets/css/plugins/jquery.countdown.css">
     <!-- Plugins CSS File -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="css/logo.css">
@@ -33,6 +32,7 @@
     <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
 </head>
+
 
 <body>
     
@@ -110,7 +110,7 @@
                         <a href="vendordashboard.html">My Dashboard</a>
                     </li>
 					<li>
-                        <a href="store.html" style="color: #ffffff;">Store</a>
+                        <a href="advert.html" style="color: #ffffff;">My Advert</a>
                     </li>
                     </ul><!-- End .menu -->
             </nav><!-- End .main-nav -->
@@ -146,6 +146,9 @@
 								    </li>
                                     <li class="nav-item">
 								        <a class="nav-link" id="tab-profile-link" data-toggle="tab" href="#tab-profile" role="tab" aria-controls="tab-profile" aria-selected="false">Profile</a>
+								    </li>
+									<li class="nav-item">
+								        <a class="nav-link" id="tab-company-link" data-toggle="tab" href="#tab-company" role="tab" aria-controls="tab-company" aria-selected="false">Company Profile</a>
 								    </li>
 								    <li class="nav-item">
 								        <a class="nav-link" id="tab-address-link" data-toggle="tab" href="#tab-address" role="tab" aria-controls="tab-address" aria-selected="false">Adresses</a>
@@ -187,15 +190,7 @@
                                           </div>
 								    </div><!-- .End .tab-pane -->
 
-								    <div class="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-								    	<p>No order has been made yet.</p>
-								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
-								    </div><!-- .End .tab-pane -->
-
-								    <div class="tab-pane fade" id="tab-downloads" role="tabpanel" aria-labelledby="tab-downloads-link">
-								    	<p>No downloads available yet.</p>
-								    	<a href="category.html" class="btn btn-outline-primary-2"><span>GO SHOP</span><i class="icon-long-arrow-right"></i></a>
-								    </div><!-- .End .tab-pane -->
+					
 
 								    <div class="tab-pane fade" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
 								    	<p>The following addresses will be used on the checkout page by default.</p>
@@ -226,7 +221,22 @@
 								    		</div><!-- End .col-lg-6 -->
 								    	</div><!-- End .row -->
 								    </div><!-- .End .tab-pane -->
-
+									<div class="tab-pane fade" id="tab-company" role="tabpanel" aria-labelledby="tab-company-link">
+										<div class="container">
+											<h3 class="text">Business Profile</h3>
+											<div class="media-body">
+                                                <ul class="user-profile-list">
+                                                  <li><span style="font-weight: bold;">Business Name:</span> Tech George</li>
+                                                  <li><span style="font-weight: bold;">Display:</span> John Kelly</li>
+                                                  <li><span style="font-weight: bold;">Company Short Description:</span>  Praesent dapibus, neque id cursus ucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. </li>
+                                                  <li><span style="font-weight: bold;">Company Address:</span> Momo Street Mogbo</li>
+                                                  <li><span style="font-weight: bold;">State:</span> Lagos State</li>
+												  <li><span style="font-weight: bold;">Phone Number:</span> +123 456 7890</li>
+												  <li><span style="font-weight: bold;">Company Website:</span> +123 456 7890</li>
+                                                </ul>
+                                              </div>
+										</div>
+									</div>
 								    <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
 								    	<form action="#">
 			                				<div class="row">

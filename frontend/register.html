@@ -32,24 +32,7 @@
     <link rel="stylesheet" href="assets/css/plugins/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="assets/css/plugins/nouislider/nouislider.css">
 </head>
-<style>
-  .form-step {
-      display: none;
-  }
 
-  .form-step.active {
-      display: block;
-  }
-
-  .form-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #f8f9fa;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-</style>
 <body>
     
 
@@ -99,68 +82,68 @@
     
     </div>
 
-  <div class="container mt-5">
-      <div class="form-container">
-        <h2 class="text-center mb-4" style="font-size: 3rem;">Vendor Registration</h2>
-          <form id="registrationForm">
-              <!-- Step 1 -->
-              <div class="form-step active" id="step-1">
-                  <h4 class="mb-3">Step 1: Basic Information</h4>
-                  <div class="mb-3">
-                      <label for="vendorName" class="form-label">Vendor Name</label>
-                      <input type="text" class="form-control" id="vendorName" placeholder="Enter vendor name" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="vendorEmail" class="form-label">Email Address</label>
-                      <input type="email" class="form-control" id="vendorEmail" placeholder="Enter email" required>
-                  </div>
-                  <div class="text-end">
-                      <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
-                  </div>
-              </div>
+  <div class="container mt-9">
+    <form action="#">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Business Name *</label>
+                <input type="text" placeholder="Enter Business Name" class="form-control" required>
+            </div><!-- End .col-sm-6 -->
 
-              <!-- Step 2 -->
-              <div class="form-step" id="step-2">
-                  <h4 class="mb-3">Step 2: Business Information</h4>
-                  <div class="mb-3">
-                      <label for="businessType" class="form-label">Business Type</label>
-                      <input type="text" class="form-control" id="businessType" placeholder="Enter type of business" required>
-                  </div>
-                  <div class="mb-3">
-                      <label for="businessAddress" class="form-label">Business Address</label>
-                      <textarea class="form-control" id="businessAddress" rows="3" placeholder="Enter business address" required></textarea>
-                  </div>
-                  <div class="text-end">
-                      <button type="button" class="btn btn-secondary" onclick="previousStep(1)">Back</button>
-                      <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
-                  </div>
-              </div>
+            <div class="col-sm-6">
+                <label>Display Name *</label>
+                <input type="text" placeholder="Business Display Name" class="form-control" required>
+            </div><!-- End .col-sm-6 -->
+        </div><!-- End .row -->
 
-              <!-- Step 3 -->
-              <div class="form-step" id="step-3">
-                  <h4 class="mb-3">Step 3: Upload Documents & Declaration</h4>
-                  <div class="mb-3">
-                      <label for="documents" class="form-label">Upload Documents</label>
-                      <input type="file" class="form-control" id="documents" multiple required>
-                      <input type="file" class="form-control" id="documents" multiple required>
-                  </div>
-                  <div class="mb-4">
-                      <label for="declaration" class="form-label">Declaration</label>
-                      <textarea class="form-control" id="declaration" rows="3" readonly>
-I hereby quote that the information provided is accurate and true to the best of my knowledge. I understand that false information may lead to disqualification or other legal actions.
-                      </textarea>
-                  </div>
-                  <div class="mb-3 form-check">
-                      <input type="checkbox" class="form-check-input" id="agree" required>
-                      <label class="form-check-label" for="agree">I agree to the terms and conditions</label>
-                  </div>
-                  <div class="text-end">
-                      <button type="button" class="btn btn-secondary" onclick="previousStep(2)">Back</button>
-                      <button type="submit" class="btn btn-success">Submit</button>
-                  </div>
-              </div>
-          </form>
-      </div>
+        <label>Company Short Description *</label>
+        <input type="text" placeholder="Enter short description about your company" class="form-control" required>
+        
+        <label>Company address *</label>
+        <input type="text" placeholder="Enter Company Address" class="form-control" required>
+        <div class="row">
+            <div class="col-sm-6">
+                <label>State *</label>
+                <input type="text" placeholder="Enter State" class="form-control" required>
+            </div><!-- End .col-sm-6 -->
+
+            <div class="col-sm-6">
+                <label>Phone Number *</label>
+                <input type="text" placeholder="Enter Phone Number" class="form-control" required>
+            </div><!-- End .col-sm-6 -->
+        </div><!-- End .row -->
+
+        <label>Company Website Description</label>
+        <input type="text" placeholder="Enter Company Website" class="form-control">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Facebook Link</label>
+                <input type="text" class="form-control" >
+            </div><!-- End .col-sm-6 -->
+            <div class="col-sm-6">
+                <label>Whatsapp Link</label>
+                <input type="text" class="form-control" >
+            </div><!-- End .col-sm-6 -->
+            <div class="col-sm-6">
+                <label>Twitter (X) Link</label>
+                <input type="text" class="form-control" >
+            </div><!-- End .col-sm-6 -->
+            <div class="col-sm-6">
+                <label>Instagram Link</label>
+                <input type="text" class="form-control" >
+            </div><!-- End .col-sm-6 -->
+
+        </div><!-- End .row -->
+        
+        
+        
+
+
+        <button type="submit" class="btn btn-outline-primary-2">
+            <span>REGISTER</span>
+            <i class="icon-long-arrow-right"></i>
+        </button>
+    </form>
   </div>
 
 <br>

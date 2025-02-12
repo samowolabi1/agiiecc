@@ -27,19 +27,7 @@
             <div class="m-3 row">
                 <div class="col-md-2">
                     <!-- Widget Category -->
-                    <div class="widget widget-category">
-                        <h4 class="widget-title"></h4>
-                        <ul class="widget-category-list">
-                            <li><a href="{{ route('new.advert') }}">New Advert</a>
-                            </li>
-                            <li><a href="#!">Running Adverts</a>
-                            </li>
-                            <li><a href="#!">All Adverts</a>
-                            </li>
-                            <li><a href="#!">Payments</a>
-                            </li>
-                        </ul>
-                    </div> <!-- End category  -->
+                    @include('adverts.sidebar.sidebar')
 
                 </div>
 

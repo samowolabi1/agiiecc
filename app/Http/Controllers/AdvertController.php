@@ -69,7 +69,7 @@ class AdvertController extends Controller
 
     public function payment_pending(){
 
-        $unpaidads = Advert::where('level','LEVEL 3')->get();
+        $unpaidads = Advert::where('level','LEVEL 3')->where('paid','NO')->get();
 
 
         return view('adverts.pendingpayments', compact('unpaidads'));

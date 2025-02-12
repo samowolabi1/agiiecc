@@ -235,7 +235,7 @@ class RideController extends Controller
 
     Public function admin_ride_show($id){
 
-        //return $id;
+        return $id;
 
         $ride = Ride::find($id);
         $vendor = User::where('id',$ride->user_id)->first();

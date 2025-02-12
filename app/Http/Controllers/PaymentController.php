@@ -18,6 +18,7 @@ use Paystack;
 use Student;
 use Exception;
 use Auth;
+use DB;
 
 
 class PaymentController extends Controller
@@ -182,48 +183,84 @@ class PaymentController extends Controller
 
 
 
-    ///paystack
-    {"email":"chris@agiing.com","orderID":"AG00JZWsv","amount":"270007","quantity":"1","currency":"NGN","metadata":"{\"key_name\":\"value\"}","reference":"Q5B1U4fMr5Vf6bGFNLVCLbebN","_token":"Q8KxBLGr8JwB4Rf28N2EA7NilRC2yw6baMaQBBYZ","advert_id":"1","advertfee_id":"3","product_id":"1"}
-
-    public function redirectToGateway(Request $request)
-    {
-        return $request->all();
-
-        $rules = [
-                'amount' => 'required',
-                'advert_id' => 'required',
-            ];
-
-            $validator = Validator::make($request->all(), $rules);
-
-            if ($validator->fails()) {
-                return response([
-                    'error_msg' => $validator->errors(),
-                ], 400);
-            }
+   
 
 
-            $payment = Payment::create([
-                    'department_id' => 2,
-                    'firstname' => $request->firstname,
-                    'lastname' => $request->lastname,
-                    'sex' => $request->sex,
-                    'email' => $request->email,
-                    'email_verified_at' => now(),
-                    'password' => bcrypt($request->password),
-                ]);
+
+        public function redirectToGateway(Request $request)
+            {
+                //return $request->all();
+
+                $rules = [
+
+                        'amount' => 'required',
+                        'advert_id' => 'required',
+                    ];
+
+                    $validator = Validator::make($request->all(), $rules);
+
+                    if ($validator->fails()) {
+                        return response([
+                            'error_msg' => $validator->errors(),
+                        ], 400);
+                    }
+
+                    $advert = Advert::find($request->advert_id);
+                    $user = User::find($request->user_id);
+
+                    $payment = Payment::create([
+                            'user_id' => $request->user_id,
+                            'advertfee_id' => $request->advertfee_id,
+                            'company_id' => $advert->company_id,
+                            'cost' => $request->cost,
+                            'amount' => $request->amount,
+                            'quantity' => $request->quantity,
+                            'currency' => 'NG',
+                            'status' => 'Unconfirmed',
+                            'description' => $request->reference,
+                            'purpose' => $request->email
+                        ]);
+
+                    $transaction = Transaction::create([
+                            'user_id' => $request->user_id,
+                            'advertfee_id' => $request->advertfee_id,
+                            'company_id' => $advert->company_id,
+                            'payment_id' => $payment->id,
+                            'advert_id' => $request->advert_id,
+                            'cost' => $request->cost,
+                            'item' => $request->product_id,
+                            'item_id' => $request->product_id,
+                            'item_category' => $advert->category_id,
+                            'amount' => $request->amount,
+                            'quantity' => $request->sex,
+                            'currency' => $request->email,
+                            'status' => $request->email,
+                            'description' => $request->reference,
+                            'purpose' => $request->email
+                        ]);
+
+                    $payment = Payment::find($payment->id);
+                    $payment->status = 'Confirmed';
+                    $payment->save();
+
+                    $advert = Advert::find($request->advert_id);
+                    $advert->paid = 'YES';
+                    $advert->save();
+
+                try{
 
 
-        try{
+                    return Paystack::getAuthorizationUrl()->redirectNow();
+
+                    
 
 
-            return Paystack::getAuthorizationUrl()->redirectNow();
+                }catch(\Exception $e) {
+                    return Redirect::back()->withMessage(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
+                } 
 
-
-        }catch(\Exception $e) {
-            return Redirect::back()->withMessage(['msg'=>'The paystack token has expired. Please refresh the page and try again.', 'type'=>'error']);
-        }        
     }
+
 
     public function handleGatewayCallback()
     {

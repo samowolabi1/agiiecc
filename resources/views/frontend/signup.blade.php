@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="/frontend/assets/css/bootstrap.min.css">
     <!-- Main CSS File -->
     <link rel="stylesheet" href="/frontend/assets/css/style.css">
-    <link rel="stylesheet" href="css/logo.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/frontend/css/logo.css">
+    <link rel="stylesheet" href="/frontend/css/style.css">
     <link rel="stylesheet" href="/frontend/assets/css/plugins/owl-carousel/owl.carousel.css">
     <link rel="stylesheet" href="/frontend/assets/css/plugins/magnific-popup/magnific-popup.css">
     <link rel="stylesheet" href="/frontend/assets/css/plugins/nouislider/nouislider.css">
@@ -74,8 +74,8 @@
         <!-- Site Logo -->
         <div class="row justify-content-center">
             <div class="text-center col-12">
-                <a href="index.html">
-                    <img src="images/Agiilogo2.png" alt="Site Logo" class="img-fluid" style="height: 170px; width: auto;">
+                <a href="/">
+                    <img src="frontend/images/Agiilogo2.png" alt="Site Logo" class="img-fluid" style="height: 170px; width: auto;">
                 </a>
             </div>
         </div>
@@ -88,35 +88,34 @@
           <div class="col-md-6 col-md-offset-3">
             <div class="block text-center">
               <h2 class="text-center">Create Your Account</h2>
-          <form class="clearfix text-left" action="index.html">
-            <div class="form-group">
-              <input type="text" class="form-control"  placeholder="First Name">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control"  placeholder="Last Name">
-            </div>
-            <div class="form-group">
-              <input type="text" class="form-control"  placeholder="Username">
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control"  placeholder="Email">
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control"  placeholder="Password">
-            </div>
-            <div class="text-center">
-              <button type="submit" class="text-center btn btn-main">Create account</button>
-            </div>
-             <a href="#" class="btn btn-google btn-user btn-block">
-                  <i class="fa fa-google"></i> Login with Google
-                </a>
-                <a href="#" class="btn btn-facebook btn-user btn-block">
-                  <i class="fa fa-facebook-f"></i> Login with Facebook
-                </a>
+              <form class="clearfix text-left" action="{{ route('registeringuser') }}" method="POST">
+                @csrf  <!-- Laravel CSRF Token for Security -->
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="text-center btn btn-main">Create Account</button>
+                </div>
+
                 <p class="mt-45" style="text-align: center;">
-                  Already a User? <a href="login.html">Click here</a>
+                    Already a User? <a href="{{ route('login') }}">Click here</a>
                 </p>
-          </form>
+            </form>
+
             </div>
           </div>
         </div>
@@ -153,7 +152,7 @@
     </style>
 
 
-<footer class="footer" style="background-color: #8fc74a; color:white;" >
+{{-- <footer class="footer" style="background-color: #8fc74a; color:white;" >
         	<div class="footer-middle">
 	            <div class="container">
 	            	<div class="row" st>
@@ -219,8 +218,13 @@
 	        		</figure><!-- End .footer-payments -->
 	        	</div><!-- End .container -->
 	        </div><!-- End .footer-bottom -->
-        </footer><!-- End .footer -->
-    </div><!-- End .page-wrapper -->
+        </footer><!-- End .footer --> --}}
+
+
+        @include('frontend.component.footer')
+    </div>
+
+    <!-- End .page-wrapper -->
 
 
     <!-- Plugins JS File -->

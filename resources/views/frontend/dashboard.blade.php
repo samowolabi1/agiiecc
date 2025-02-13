@@ -70,7 +70,7 @@
                                     </p>
                                     <br>
                                     <h2>Do you want to be a Vendor?</h2>
-                                    <a href="register.html" class="btn btn-outline-primary-2"><span>Start Selling</span><i
+                                    <a href="vendor_register" class="btn btn-outline-primary-2"><span>Start Selling</span><i
                                             class="icon-long-arrow-right"></i></a>
                                 </div><!-- .End .tab-pane -->
 

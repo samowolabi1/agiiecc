@@ -15,21 +15,22 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\Ride;
 use App\Models\Category;
+use App\Models\createreview;
 
 
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
-     
+
 
     /**
      * The attributes that are mass assignable.
-     * 
+     *
      *
      * @var array<int, string>
-     * 
-     *  
+     *
+     *
      */
     protected $fillable = [
         'firstname',
@@ -92,7 +93,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Category::class);
     }
 
-        public function images()
+    public function images()
     {
         return $this->hasMany(Image::class);
     }
@@ -100,6 +101,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function department()
     {
         return $this->belongsTo(Department::class);
+    }
+
+    public function rideServiceImages()
+    {
+        return $this->hasMany(RideServiceImage::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(createreview::class);
     }
 
 

@@ -1,88 +1,74 @@
-@extends('layouts.master')
+@extends('layouts.frontend')
 
-@section('content')
+@section('mainSection')
+    <section class="user-dashboard page-wrapper">
+        <div class="container">
+            <div class="m-3 row">
+                <div class="col-md-12">
+                    <div class="mt-3 text-center">
+                        @include('partials.userdshheader')
 
 
-<section class="user-dashboard page-wrapper">
-    <div class="container">
-        <div class="row m-3">
-            <div class="col-md-12">
-               @include('partials.userdshheader')
-                
-
-                <div class="dashboard-wrapper user-dashboard">
-                    <div class="media">
-                        
-                        <div class="media-body">
-                            <h2 class="media-heading">My Adverts </h2>
-                            <!-- <p>Created - 2 Years Ago || Last Login - 2 Days ago </p> -->
-                        </div>
                     </div>
 
+                    <div class="dashboard-wrapper user-dashboard">
+                        <div class="media">
+
+                            <div class="media-body">
+                                <h2 class="media-heading">My Adverts </h2>
+                                <!-- <p>Created - 2 Years Ago || Last Login - 2 Days ago </p> -->
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
 
 
-<div style="height: 40px;"></div>
+            <div style="height: 40px;"></div>
 
-         <div class="row m-3">
-                    <div class="col-md-2">
+            <div class="m-3 row">
+                <div class="col-md-2">
+                    <!-- Widget Category -->
+                    @include('adverts.sidebar.sidebar')
 
-                                <!-- Widget Category -->
-            <div class="widget widget-category">
-                <h4 class="widget-title"></h4>
-                <ul class="widget-category-list">
-                    <li><a href="{{route('new.advert')}}">New Advert</a>
-                    </li>
-                    <li><a href="#!">Running Adverts</a>
-                    </li>
-                    <li><a href="#!">All Adverts</a>
-                    </li>
-                    <li><a href="#!">Payments</a>
-                    </li>
-                </ul>
-            </div> <!-- End category  -->             
+                </div>
 
-              
-                
-            </div>
+                <div class="col-md-10">
+                    @if (!empty($company->id))
+                    <h3><b>Pick an Advert Category</b></h3>
 
-            <div class="col-md-10">
-                
-                      <div class="total-order">
-                        <h4>You have no running adverts</h4>
-                        <div class="table-responsive">
-                         <!--    <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Order ID</th>
-                                        <th>Date</th>
-                                        <th>Items</th>
-                                        <th>Total Price</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href="#!">#252125</a></td>
-                                        <td>Mar 25, 2016</td>
-                                        <td>2</td>
-                                        <td>$ 99.00</td>
-                                    </tr>
-                                
-                                </tbody>
-                            </table> -->
-                        </div>
+
+
+
+                    <div class="">
+                        <form action="{{ route('selectAds') }}" method="get">
+                            @csrf
+                            <select id="categorySelect" class="form-control fs-3" name="category_id">
+                                <option value="">Select a Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+
+                                <button class="mt-3 btn btn-info btn-lg" type="submit">  NEXT</button>
+                        </form>
                     </div>
+
+                    @else
+                    <div>
+                      <b>  You need to create a company profile. <br> <a href="/my-profile" class='text-primary'>Click Here</a>  to creat on</b>
+                    </div>
+
+                    @endif
+
+                </div>
+
+
             </div>
-            
-        </div>
 
-        
-    </div>
-</section>
 
+    </section>
 
 
 @endsection

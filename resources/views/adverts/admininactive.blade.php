@@ -107,7 +107,7 @@
                                             <!-- <td>{{$inads->approved ?? ''}}</</td> -->
                                             <!-- <td>{{$inads->paid ?? ''}}</</td> -->
                                             <td><a href="{{route('vendor.show',$inads->user_id)}}">View Company</a><i class="fab fa-view-f fa-fw"></i></td>
-                                            <td><a href="{{route('admin.ride.show',$inads->id)}}">More Info</a><i class="fab fa-view-f fa-fw"></i></td>
+                                            <td><a href="{{route('advert.show',$inads->id)}}">More Info</a><i class="fab fa-view-f fa-fw"></i></td>
                                              @if($inads->category_id == 1)
                                                 <td><a href="{{route('admin.prod.show',$inads->product->id)}}">View Product</a><i class="fab fa-view-f fa-fw"></i></td>
                                             @elseif($inads->category_id == 2)

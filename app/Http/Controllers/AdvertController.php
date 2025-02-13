@@ -29,27 +29,32 @@ class AdvertController extends Controller
     //
 
 
-    public function user_ads(){
+    public function user_ads()
+    {
 
         $categories = Category::all();
 
-        return view('adverts.user_ads', compact('categories'));
+        $company = User::find(auth()->user->id())->company;
+
+        return view('adverts.user_ads', compact('categories','company'));
         
     }
 
 
-    public function active_ads(){
+    public function active_ads()
+    {
 
-        $activeAds = Advert::where('status','ACTIVE')->where('approved','YES')->where('paid','YES')->get();
+        $activeAds = Advert::where('status', 'ACTIVE')->where('approved', 'YES')->where('paid', 'YES')->get();
 
 
         return view('adverts.adminactive', compact('activeAds'));
 
     }
 
-    public function inactive_ads(){
+    public function inactive_ads()
+    {
 
-        $inactiveAds = Advert::where('status','INACTIVE')->where('approved','YES')->get();
+        $inactiveAds = Advert::where('status', 'INACTIVE')->where('approved', 'YES')->get();
 
 
         return view('adverts.admininactive', compact('inactiveAds'));
@@ -57,9 +62,10 @@ class AdvertController extends Controller
     }
 
 
-    public function unapproved_active_ads(){
+    public function unapproved_active_ads()
+    {
 
-        $unapprovedAds = Advert::where('approved','NO')->where('paid','YES')->get();
+        $unapprovedAds = Advert::where('approved', 'NO')->where('paid', 'YES')->get();
 
 
         return view('adverts.admininunapproved', compact('unapprovedAds'));
@@ -67,9 +73,11 @@ class AdvertController extends Controller
     }
 
 
-    public function payment_pending(){
+    public function payment_pending()
+    {
 
-        $unpaidads = Advert::where('level','LEVEL 3')->get();
+        $unpaidads = Advert::where('level','LEVEL 3')->where('paid','NO')->get();
+        $unpaidads = Advert::where('level', 'LEVEL 3')->get();
 
 
         return view('adverts.pendingpayments', compact('unpaidads'));
@@ -77,265 +85,280 @@ class AdvertController extends Controller
     }
 
 
-    public function show_ads($id){
+    public function show_ads($id)
+    {
 
-        $adverts = Advert::find($id);
-        $advertfee = Advertfee::all();
+
+      $adverts = Advert::find($id);        
+      $advertfee = Advertfee::all();
 
         //return $products;
 
-        return view('adverts.show', compact('adverts','advertfee'));
+        return view('adverts.show', compact('adverts', 'advertfee'));
 
     }
 
-
-    public function new_ads(){
+    public function new_ads()
+    {
 
         $categories = Category::all();
-
         return view('adverts.user_ads', compact('categories'));
-        
+
     }
 
-    public function vend_items($id){
 
-        $products = Product::where('user_id',$id)->get();
-        $services = Service::where('user_id',$id)->get();
-        $rides = Ride::where('user_id',$id)->get();
+
+    public function vend_items($id)
+    {
+
+        $products = Product::where('user_id', $id)->get();
+        $services = Service::where('user_id', $id)->get();
+        $rides = Ride::where('user_id', $id)->get();
         $user = User::Find($id);
 
         //return $products;
 
-        return view('vendors.venditems', compact('products','services','rides','user'));
+        return view('vendors.venditems', compact('products', 'services', 'rides', 'user'));
 
     }
 
-    public function admin_ven_cat(Request $request){
+    public function admin_ven_cat(Request $request)
+    {
 
         //return $request->all();
 
-            if($request->category_id == ""){
+        if ($request->category_id == "") {
 
-                return redirect()->back()->with('error','No data is supplied');
-            }
+            return redirect()->back()->with('error', 'No data is supplied');
+        }
 
         $user = User::find($request->userId);
 
         $rules = [
-                
-                 'category_id' => 'required',
 
-                ];
+            'category_id' => 'required',
 
-            $validator = Validator::make($request->all(), $rules);
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
 
         $catId = $request->category_id;
 
         if ($catId == 1) {
-                // code...
+            // code...
 
-                $color = Color::all();
-                $size = Size::all();
-                $type = Type::all();
+            $color = Color::all();
+            $size = Size::all();
+            $type = Type::all();
 
-                $category = Category::find($request->category_id);
+            $category = Category::find($request->category_id);
 
-                Session::put('category_id', $request->input('category_id'));
-                Session::put('category_name', $category->name);
+            Session::put('category_id', $request->input('category_id'));
+            Session::put('category_name', $category->name);
 
-                //$SessioncatId = Session::get('category_id');
+            //$SessioncatId = Session::get('category_id');
 
-                return view('vendors.prod1', compact('size','color','type','user'));
-
-
-            }else if ($catId == 2) {
-                
-                $servicetypes = Sevicetype::all();
-
-                $category = Category::find($request->category_id);
-
-                Session::put('category_id', $request->input('category_id'));
-                Session::put('category_name', $category->name);
-
-                return view('vendors.serve1', compact('servicetypes','user'));
+            return view('vendors.prod1', compact('size', 'color', 'type', 'user'));
 
 
+        } else if ($catId == 2) {
 
-            }else if ($catId == 3) {
-                
-                $ridetypes = Ridetype::all();
-                $carbrands = Carbrand::all();
-                $cartypes = Cartype::all();
-                $states = State::all();
-                $colors = Color::all();
+            $servicetypes = Sevicetype::all();
 
-                $category = Category::find($request->category_id);
+            $category = Category::find($request->category_id);
 
-                Session::put('category_id', $request->input('category_id'));
-                Session::put('category_name', $category->name);
+            Session::put('category_id', $request->input('category_id'));
+            Session::put('category_name', $category->name);
+            return view('vendors.serve1', compact('servicetypes', 'user'));
 
-                return view('vendors.ride1', compact('ridetypes','cartypes','carbrands','states','colors','user'));
+
+
+        } else if ($catId == 3) {
+
+            $ridetypes = Ridetype::all();
+            $carbrands = Carbrand::all();
+            $cartypes = Cartype::all();
+            $states = State::all();
+            $colors = Color::all();
+
+            $category = Category::find($request->category_id);
+
+            Session::put('category_id', $request->input('category_id'));
+            Session::put('category_name', $category->name);
+
+            return view('vendors.ride1', compact('ridetypes', 'cartypes', 'carbrands', 'states', 'colors', 'user'));
 
 
 
         }
 
-            return redirect()->back()->withErrors($validator)->withInput();
+        return redirect()->back()->withErrors($validator)->withInput();
 
-        
-        
+
+
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         //return $request->all();
 
         $this->validate($request, [
 
-                'category_id' => 'required',
-                ]);
+            'category_id' => 'required',
+        ]);
 
         $catId = $request->category_id;
 
         if ($catId == 1) {
-                // code...
+            // code...
 
-                $color = Color::all();
-                $size = Size::all();
-                $type = Type::all();
+            $color = Color::all();
+            $size = Size::all();
+            $type = Type::all();
 
-                $category = Category::find($request->category_id);
+            $category = Category::find($request->category_id);
 
-                Session::put('category_id', $request->input('category_id'));
-                Session::put('category_name', $category->name);
+            Session::put('category_id', $request->input('category_id'));
+            Session::put('category_name', $category->name);
 
-                //$SessioncatId = Session::get('category_id');
+            //$SessioncatId = Session::get('category_id');
 
-                return view('product.newproduct1', compact('size','color','type'));
-
-
-            }else if ($catId == 2) {
-                
-                $servicetypes = Sevicetype::all();
-
-                $category = Category::find($request->category_id);
-
-                Session::put('category_id', $request->input('category_id'));
-                Session::put('category_name', $category->name);
-
-                return view('service.newservice1', compact('servicetypes'));
+            return view('product.newproduct1', compact('size', 'color', 'type'));
 
 
+        } else if ($catId == 2) {
 
-            }else if ($catId == 3) {
-                
-                $ridetypes = Ridetype::all();
-                $carbrands = Carbrand::all();
-                $cartypes = Cartype::all();
-                $states = State::all();
-                $colors = Color::all();
+            $servicetypes = Sevicetype::all();
 
-                $category = Category::find($request->category_id);
+            $category = Category::find($request->category_id);
 
-                Session::put('category_id', $request->input('category_id'));
-                Session::put('category_name', $category->name);
+            Session::put('category_id', $request->input('category_id'));
+            Session::put('category_name', $category->name);
 
-                return view('ride.newride1', compact('ridetypes','cartypes','carbrands','states','colors'));
+            return view('service.newservice1', compact('servicetypes'));
+
+
+
+        } else if ($catId == 3) {
+
+            $ridetypes = Ridetype::all();
+            $carbrands = Carbrand::all();
+            $cartypes = Cartype::all();
+            $states = State::all();
+            $colors = Color::all();
+
+            $category = Category::find($request->category_id);
+
+            Session::put('category_id', $request->input('category_id'));
+            Session::put('category_name', $category->name);
+
+            return view('ride.newride1', compact('ridetypes', 'cartypes', 'carbrands', 'states', 'colors'));
 
 
 
         }
 
-            return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()->with('error','Error occured, not saved');
 
-        
-        
+
+
     }
 
     //approval and status
 
-    Public function admin_approve_advert($id){
+    public function admin_approve_advert($id)
+    {
 
         $advert = Advert::find($id);
 
-                if ($advert->level != 'LEVEL 3' ) {
-                                
-                        return redirect()->back()->with('error','Product is not ready or Paymnent is pending');
-                    
-                    }
+        if ($advert->level != 'LEVEL 3') {
 
-                 if ($advert->approved == 'YES'){
+            return redirect()->back()->with('error', 'Product is not ready or Paymnent is pending');
 
-                        if ($advert->status == 'Active') {
-                        
-                            return redirect()->back()->with('error','Advert must be Inactive first');
-                        
-                        }
+        }
 
-                        $advert->approved = 'NO';
-                        $advert->save();
+        if ($advert->approved == 'YES') {
+
+            if ($advert->status == 'Active') {
+
+                return redirect()->back()->with('error', 'Advert must be Inactive first');
+
+            }
+
+            $advert->approved = 'NO';
+            $advert->save();
 
 
-                 }else{
+        } else {
 
-                    if ($advert->paid != 'YES' ) {
-                                
-                        return redirect()->back()->with('error','Product is not ready or Paymnent is pending');
-                    
-                    }
+            if ($advert->paid != 'YES') {
 
-                    
-                        $advert->approved = 'YES';
-                        $advert->save();
-                 }
+                return redirect()->back()->with('error', 'Product is not ready or Paymnent is pending');
 
-        return redirect()->back()->with('success','Updated Succesfully');
+            }
+
+
+            $advert->approved = 'YES';
+            $advert->save();
+        }
+
+        return redirect()->back()->with('success', 'Updated Succesfully');
 
     }
 
-    Public function admin_status_advert($id){
+    public function admin_status_advert($id)
+    {
 
-         $advert = Advert::find($id);
+        $advert = Advert::find($id);
 
-         if ($advert->approved == 'NO') {
-                        
-                return redirect()->back()->with('error','Product must be Approved');
-            
-            }
+        if ($advert->approved == 'NO') {
 
-         if ($advert->status == 'Active'){
+            return redirect()->back()->with('error', 'Product must be Approved');
+
+        }
+
+        if ($advert->status == 'Active') {
 
             $advert->status = 'Inactive';
             $advert->save();
 
-         }else{
+        } else {
 
             $advert->status = 'Active';
             $advert->save();
-         }
+        }
 
-         
 
-        return redirect()->back()->with('success','Updated Succesfully');
+
+        return redirect()->back()->with('success', 'Updated Succesfully');
 
     }
 
-    public function order_page($id){
+    public function order_page($id)
+    {
+        $adverts = Advert::find($id);
 
+        if ($adverts->level != 'LEVEL 3') {
 
+            return redirect()->back()->with('error', 'Product must be in Level 3');
+        }
 
-         $adverts = Advert::find($id);
-
-         if ($adverts->level != 'LEVEL 3') {
+        if ($adverts->advertfee->id == 1) {
                         
-                return redirect()->back()->with('error','Product must be in Level 3');
+                return redirect()->back()->with('error','Select a subscription plan');
             
             }
 
         $advertfee = Advertfee::all();
 
+        $tax = $adverts->advertfee->tax / 100;
+        $advCost = $adverts->advertfee->cost + $tax + $adverts->advertfee->charge;
+        $paystackCost = $advCost * 100;
+        $orderId = 'AG00'.str()->random(5);
+
         //return $products;
 
-        return view('payment.orderpage', compact('adverts','advertfee'));
+        return view('payment.orderpage', compact('adverts','advertfee','advCost','paystackCost','orderId'));
     }
 }

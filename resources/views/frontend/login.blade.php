@@ -23,7 +23,7 @@
         <div class="col-md-6 col-md-offset-3">
           <div class="block text-center">
             <h2 class="text-center">Welcome Back</h2>
-            <form class="text-left clearfix" method="POST" action="#">
+            <form class="clearfix text-left" method="POST" action="#">
               <div class="form-group">
                 <input
                   id="email"
@@ -54,14 +54,14 @@
                 <label class="form-check-label" for="remember">Remember Me</label>
               </div>
               <hr />
-              <a href="#" class="btn btn-google btn-user btn-block">
+              {{-- <a href="#" class="btn btn-google btn-user btn-block">
                 <i class="fa fa-google"></i> Login with Google
               </a>
               <a href="#" class="btn btn-facebook btn-user btn-block">
                 <i class="fa fa-facebook-f"></i> Login with Facebook
-              </a>
+              </a> --}}
               <div class="text-center">
-                <button type="submit" class="btn btn-main text-center">
+                <button type="submit" class="text-center btn btn-main">
                   Login
                 </button>
               </div>
@@ -71,7 +71,7 @@
               <a class="small" href="#">Forgot Password?</a>
             </div>
             <p class="mt-20">
-              New in this site? <a href="signin.html">Create New Account</a>
+              New in this site? <a href="signin.">Create New Account</a>
             </p>
           </div>
         </div>

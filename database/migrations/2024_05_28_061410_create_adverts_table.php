@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('adverts', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
+            $table->string('advertid')->nullable();
             $table->bigInteger('advertfee_id')->unsigned();
             $table->bigInteger('company_id')->unsigned();
-            $table->bigInteger('category_id')->unsigned();
+            $table->bigInteger('category_id')->unsigned();            
             $table->string('status')->default('INACTIVE');
             $table->string('approved')->default('No');
             $table->integer('running')->default(0);

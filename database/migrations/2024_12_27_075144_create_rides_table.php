@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('rides', function (Blueprint $table) {
             $table->id();
+            $table->string('rideid')->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('company_id')->unsigned();
             $table->bigInteger('ridetype_id')->unsigned();
@@ -39,6 +40,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('approved')->nullable();
             $table->float('price')->nullable();
+            $table->float('minimum_ride_fair');
             $table->float('discount')->nullable();
             $table->string('service_link')->nullable();
             $table->string('brand')->nullable();

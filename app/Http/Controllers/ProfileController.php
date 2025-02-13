@@ -35,7 +35,7 @@ class ProfileController extends Controller
 
         $states = State::all();
         $company = User::find(Auth::id())->company;
-        
+
 
         //return $company;
 
@@ -69,7 +69,7 @@ class ProfileController extends Controller
 
     public function service_index(){
 
-      
+
         $services = Service::all();
 
 
@@ -110,7 +110,7 @@ class ProfileController extends Controller
 
         $user = User::find($id);
         $depts = Department::all();
-       
+
 
 
         return view('employees.show',compact('user','depts'));
@@ -135,14 +135,14 @@ class ProfileController extends Controller
             );
 
             $validator = Validator::make($request->all(), $rules);
-           
+
 
                 if ($validator->fails()) {
 
                     return response([
                         'error_msg' => $validator->errors()
                     ], 400);
-                
+
                 }else{
 
                     $user = User::create([
@@ -175,14 +175,14 @@ class ProfileController extends Controller
             );
 
             $validator = Validator::make($request->all(), $rules);
-           
+
 
                 if ($validator->fails()) {
 
                     return response([
                         'error_msg' => $validator->errors()
                     ], 400);
-                
+
                 }else{
 
                     $user = User::create([
@@ -216,14 +216,14 @@ class ProfileController extends Controller
             );
 
             $validator = Validator::make($request->all(), $rules);
-           
+
 
                 if ($validator->fails()) {
 
                     return response([
                         'error_msg' => $validator->errors()
                     ], 400);
-                
+
                 }else{
 
                     $user = User::create([
@@ -298,9 +298,21 @@ class ProfileController extends Controller
     public function perform()
     {
         Session::flush();
-        
+
         Auth::logout();
 
         return redirect('login');
+    }
+
+
+
+    // update vendor profile
+
+    public function updateProfile(){
+
+        $company = User::find(Auth::id())->company;
+        $states = State::all();
+        return view('profile.updateprofile', compact('company', 'states'));
+
     }
 }

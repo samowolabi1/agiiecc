@@ -74,7 +74,7 @@
             <!-- Site Logo -->
             <div class="row justify-content-center">
                 <div class="text-center col-12">
-                    <a href="index.html">
+                    <a href="/">
                         <img src="frontend/images/Agiilogo2.png" alt="Site Logo" class="img-fluid"
                             style="height: 170px; width: auto;">
                     </a>
@@ -123,22 +123,23 @@
                                     </label>
                                 </div>
                                 <hr>
-                                <a href="{{ url('auth/google') }}" class="btn btn-google btn-user btn-block">
+                                {{-- <a href="{{ url('auth/google') }}" class="btn btn-google btn-user btn-block">
                                     <i class="fa fa-google"></i> Login with Google
                                 </a>
                                 <a href="{{ url('auth/facebook') }}" class="btn btn-facebook btn-user btn-block">
                                     <i class="fa fa-facebook-f"></i> Login with Facebook
-                                </a>
+                                </a> --}}
+
                                 <div class="text-center">
                                     <button value="Login" class="text-center btn btn-main">Login</button>
                                 </div>
                             </form>
                             <hr />
                             <div class="text-center">
-                                <a class="small" href="#">Forgot Password?</a>
+                                <a class="small" href="{{ route('password.request') }}">Forgot Password?</a>
                             </div>
                             <p class="mt-20">
-                                New in this site? <a href="signin.html">Create New Account</a>
+                                New in this site? <a href="{{ route('registeruser') }}">Create New Account</a>
                             </p>
                         </div>
                     </div>

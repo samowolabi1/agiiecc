@@ -62,8 +62,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     ////payment
     // Route::post('admin-', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
-    Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
-    Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
+    // Laravel 8 & 9
+    Route::get('/payment/callback-yuu', [PaymentController::class, 'handleGatewayCallback']);
+    Route::post('/payment/callback', [PaymentController::class, 'redirectToGateway'])->name('payment');
 
     //Sales
     Route::get('/my-sales', [SaleController::class, 'user_index'])->name('my.sales');
@@ -71,6 +72,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     //Adverts
     Route::get('/my-adverts', [AdvertController::class, 'user_ads'])->name('my.adverts');
     Route::get('/create-new-advert', [AdvertController::class, 'new_ad'])->name('new.advert');
+    Route::get('/create-new-advert', [AdvertController::class, 'new_ads'])->name('new.advert');//not working
     Route::post('/save-new-advert', [AdvertController::class, 'store'])->name('store.advert');
     Route::get('/admin-show-advert/{id}', [AdvertController::class, 'show_ads'])->name('advert.show');
 
@@ -116,6 +118,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //Company
     Route::post('create-my-company', [CompanyController::class, 'store'])->name('create.company');
+    Route::post('update-my-company', [CompanyController::class, 'update'])->name('update.company');
     Route::post('create-vendor-company', [CompanyController::class, 'vencomp'])->name('create.company.admin');
 
     //AddCatego
@@ -160,9 +163,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/admin-all-rides', [ProfileController::class, 'ride_index'])->name('all.rides');
 
     Route::get('/my-profile', [ProfileController::class, 'userProfile'])->name('profile.index');
+    Route::get('/update-profile', [ProfileController::class, 'updateProfile'])->name('profile.updateProfile');
     Route::get('/profile-edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
     Route::get('/logout', [ProfileController::class, 'perform'])->name('logout.perform');
 });

@@ -59,7 +59,7 @@
                                             <th>Category</th>
                                             <th>Product</th>
                                             <th>Date Created</th>
-                                            <th>Status</th>
+                                            <th>Paid</th>
                                          <!--    <th>Approved</th>
                                             <th>Paid</th> -->
                                             <th>Action</th>

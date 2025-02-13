@@ -1,6 +1,6 @@
-@extends('layouts.master')
+@extends('layouts.frontend')
 
-@section('content')
+@section('mainSection')
 
 <style>
     .dashboard-wrapper{
@@ -11,20 +11,11 @@
     <section class="user-dashboard page-wrapper">
         <div class="container">
             <div class="m-3 row">
-                <div class="col-md-12">
+                <div class="mt-3 text-center col-md-12 justify-content-center">
                     @include('partials.userdshheader')
 
                     <hr>
-                    <div class="user-dashboard">
-                        <div class="media">
 
-                            <div class="media-body">
-                                <!-- <h2 class="media-heading">My Profile </h2> -->
-                                <!-- <p>Created - 2 Years Ago || Last Login - 2 Days ago </p> -->
-                            </div>
-                        </div>
-
-                    </div>
                 </div>
             </div>
 
@@ -38,7 +29,12 @@
                     <div class="border widget widget-category border-light">
 
                         <ul class="widget-category-list">
-                            <li><a href="#!">View Profile</a>
+                            <li><a href="/dashboard">Dashboard</a>
+                            </li>
+                            <li><a href="/my-adverts">My Advert</a>
+                            </li>
+
+                            <li><a href="my-profile">View Profile</a>
                             </li>
                             <li><a href="/update-profile">Change Information</a>
                             </li>
@@ -236,7 +232,7 @@
 
             </div>
         </div>
-
+        <br>  <br>
     </section>
 
 

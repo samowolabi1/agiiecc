@@ -335,15 +335,11 @@ class AdvertController extends Controller
 
     public function order_page($id)
     {
-
-
-
         $adverts = Advert::find($id);
 
         if ($adverts->level != 'LEVEL 3') {
 
             return redirect()->back()->with('error', 'Product must be in Level 3');
-
         }
 
         $advertfee = Advertfee::all();

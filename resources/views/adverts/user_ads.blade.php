@@ -1,12 +1,15 @@
-@extends('layouts.master')
+@extends('layouts.frontend')
 
-@section('content')
+@section('mainSection')
     <section class="user-dashboard page-wrapper">
         <div class="container">
             <div class="m-3 row">
                 <div class="col-md-12">
-                    @include('partials.userdshheader')
+                    <div class="mt-3 text-center">
+                        @include('partials.userdshheader')
 
+
+                    </div>
 
                     <div class="dashboard-wrapper user-dashboard">
                         <div class="media">
@@ -66,4 +69,6 @@
 
 
     </section>
+
+
 @endsection

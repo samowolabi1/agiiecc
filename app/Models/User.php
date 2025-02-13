@@ -15,6 +15,7 @@ use App\Models\Product;
 use App\Models\Service;
 use App\Models\Ride;
 use App\Models\Category;
+use App\Models\createreview;
 
 
 
@@ -105,6 +106,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function rideServiceImages()
     {
         return $this->hasMany(RideServiceImage::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(createreview::class);
     }
 
 

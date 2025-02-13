@@ -40,6 +40,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('approved')->nullable();
             $table->float('price')->nullable();
+            $table->float('minimum_ride_fair');
             $table->float('discount')->nullable();
             $table->string('service_link')->nullable();
             $table->string('brand')->nullable();

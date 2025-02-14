@@ -4,11 +4,11 @@
     <section class="user-dashboard page-wrapper">
         <div class="container">
             <div class="m-3 row">
-                <div class="col-md-12">
+                <div class="mt-3 text-center col-md-12">
                     @include('partials.userdshheader')
 
 
-                    <div class="dashboard-wrapper user-dashboard">
+                    {{-- <div class="dashboard-wrapper user-dashboard">
                         <div class="media">
 
                             <div class="media-body">
@@ -17,7 +17,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 

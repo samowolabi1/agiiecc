@@ -1,5 +1,4 @@
 @extends('layouts.frontend')
-
 @section('mainSection')
     <main class="main">
         <nav aria-label="breadcrumb" class="mb-0 border-0 breadcrumb-nav">

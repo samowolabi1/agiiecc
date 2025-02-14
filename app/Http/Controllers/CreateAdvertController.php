@@ -336,7 +336,11 @@ class CreateAdvertController extends Controller
         $company = Company::where('id', $product->company_id)->first();
         $categories = Category::all();
 
-        return view('adverts.vendorshowsingleproduct', compact('product', 'vendor', 'company', 'categories'));
+        $color = Color::all();
+        $size = Size::all();
+        $type = Type::all();
+
+        return view('adverts.vendorshowsingleproduct', compact('product', 'vendor', 'company', 'categories', 'color', 'size', 'type'));
     }
 
     public function show_single_ads_service($id)
@@ -348,8 +352,9 @@ class CreateAdvertController extends Controller
         $vendor = User::where('id', $service->user_id)->first();
         $company = Company::where('id', $service->company_id)->first();
         $categories = Category::all();
+        $serviceTypes = Sevicetype::all();
 
-        return view('adverts.vendorshowsingleservice', compact('service', 'vendor', 'company', 'categories'));
+        return view('adverts.vendorshowsingleservice', compact('service', 'vendor', 'company', 'categories', 'serviceTypes'));
     }
 
     public function show_single_ads_ride($id)
@@ -361,8 +366,16 @@ class CreateAdvertController extends Controller
         $vendor = User::where('id', $ride->user_id)->first();
         $company = Company::where('id', $ride->company_id)->first();
         $categories = Category::all();
+        $rideTypes = Ridetype::all();
 
-        return view('adverts.vendorshowsingleride', compact('ride', 'vendor', 'company', 'categories'));
+        $carBrands = Carbrand::all();
+        $carTypes = Cartype::all();
+        $states = State::all();
+        $colors = Color::all();
+
+
+
+        return view('adverts.vendorshowsingleride', compact('ride', 'vendor', 'company', 'categories','rideTypes', 'colors', 'carBrands', 'carTypes'));
     }
 
 

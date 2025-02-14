@@ -1,23 +1,23 @@
-@extends('layouts.master')
+@extends('layouts.frontend')
 
-@section('content')
+@section('mainSection')
     <section class="user-dashboard page-wrapper">
         <div class="container">
             <div class="m-3 row">
-                <div class="col-md-12">
+                <div class="mt-3 text-center col-md-12">
                     @include('partials.userdshheader')
 
 
-                    <div class="dashboard-wrapper user-dashboard">
+                    {{-- <div class="dashboard-wrapper user-dashboard">
                         <div class="media">
 
-                            <div class="media-body">
+                             <div class="media-body">
                                 <h2 class="media-heading">My Adverts </h2>
                                 <!-- <p>Created - 2 Years Ago || Last Login - 2 Days ago </p> -->
                             </div>
                         </div>
 
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -37,7 +37,7 @@
                             @if (!empty($user->products))
                                 <h3><b>Product Advert</b></h3>
                                 <div class="p-3 table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <table class="table table-bordered" id="dataTable" >
                                         <thead>
                                             <tr>
                                                 <th>SN</th>
@@ -127,7 +127,7 @@
                                                         {{-- <td>{{$pdt->status}}</</td> --}}
                                                     <td>{{ $pdt->approved }}</< /td>
                                                     <td>{{ $pdt->created_at->isoFormat('MMMM Do YYYY') }}</td>
-                                                    <td><a href="{{ route('show_single_ads', $pdt->id) }}">Show
+                                                    <td><a href="{{ route('show_single_ads_service', $pdt->id) }}">Show
                                                             Service</a><i class="fab fa-view-f fa-fw"></i></td>
 
                                                 </tr>

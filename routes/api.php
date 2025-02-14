@@ -40,7 +40,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/email/verification-notification', [AuthController::class, 'sendVerificationEmail'])->middleware('auth:sanctum');
 Route::get('/verify-email/{id}/{hash}', [AuthController::class, 'verify'])->name('verification.verify')->middleware('signed');
 
-    
+Route::post('/payment/callback', [PaymentController::class, 'redirectToGateway'])->name('payment');
 
 
 Route::group(['middleware' => ['auth:sanctum','verified']], function() {

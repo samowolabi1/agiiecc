@@ -64,6 +64,7 @@
                                             <th>Paid</th>
                                             <th>Action</th>
                                             <th>Action</th>
+                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -80,6 +81,7 @@
                                             <th>Paid</th>
                                             <th>Action</th>
                                             <th>Action</th>
+                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -101,6 +103,7 @@
                                             <!-- <td>{{$unapads->status ?? ''}}</</td> -->
                                             <td>{{$unapads->approved ?? ''}}</</td>
                                             <td>{{$unapads->paid ?? ''}}</</td>
+                                            <td><a href="{{route('advert.show',$unapads->id)}}">More Info</a><i class="fab fa-view-f fa-fw"></i></td>
                                             <td><a href="{{route('vendor.show',$unapads->user_id)}}">View Company</a><i class="fab fa-view-f fa-fw"></i></td>
                                              @if($unapads->category_id == 1)
                                                 <td><a href="{{route('admin.prod.show',$unapads->product->id)}}">View Product</a><i class="fab fa-view-f fa-fw"></i></td>

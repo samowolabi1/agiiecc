@@ -31,7 +31,7 @@ class CompanyController extends Controller
         //return $request->all();
              $company = new Company();
              $company->name = $request->input('name');
-             $company->user_id = Auth::id();
+             $company->user_id = auth()->user->id();
              $company->short_description = $request->input('short_description');
              $company->phone_number = $request->input('phone_number');
              $company->address = $request->input('address');
@@ -105,7 +105,7 @@ class CompanyController extends Controller
         ]);
 
         // Get the authenticated user's company
-        $company = Company::where('user_id', Auth::id())->first();
+        $company = Company::where('user_id', auth()->user->id())->first();
 
         if (!$company) {
             return redirect()->back()->with('error', 'Company not found.');

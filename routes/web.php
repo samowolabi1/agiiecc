@@ -62,8 +62,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     ////payment
     // Route::post('admin-', [App\Http\Controllers\PaymentController::class, 'redirectToGateway'])->name('pay');
-    Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
-    Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback'])->name('payment');
+    // Laravel 8 & 9
+    Route::get('/payment/callback-yuu', [PaymentController::class, 'handleGatewayCallback']);
+    Route::post('/payment/callback', [PaymentController::class, 'redirectToGateway'])->name('payment');
 
     //Sales
     Route::get('/my-sales', [SaleController::class, 'user_index'])->name('my.sales');

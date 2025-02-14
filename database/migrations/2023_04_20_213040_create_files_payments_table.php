@@ -15,13 +15,11 @@ return new class extends Migration
     {
         Schema::create('files_payments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBiginteger('file_id');
-            $table->unsignedBiginteger('payment_id');  
+            $table->unsignedBiginteger('file_id'); 
             $table->timestamps();
 
                 
             $table->foreign('file_id')->references('id')->on('files')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('payment_id')->references('id')->on('payments')->onUpdate('cascade')->onDelete('cascade');
 
 
         });

@@ -34,10 +34,10 @@ class AdvertController extends Controller
 
         $categories = Category::all();
 
-        $company = User::find(Auth::id())->company;
+        $company = User::find(auth()->user->id())->company;
 
-        return view('adverts.user_ads', compact('categories', 'company'));
-
+        return view('adverts.user_ads', compact('categories','company'));
+        
     }
 
 
@@ -76,6 +76,7 @@ class AdvertController extends Controller
     public function payment_pending()
     {
 
+        $unpaidads = Advert::where('level','LEVEL 3')->where('paid','NO')->get();
         $unpaidads = Advert::where('level', 'LEVEL 3')->get();
 
 
@@ -87,8 +88,9 @@ class AdvertController extends Controller
     public function show_ads($id)
     {
 
-        $adverts = Advert::find($id);
-        $advertfee = Advertfee::all();
+
+      $adverts = Advert::find($id);        
+      $advertfee = Advertfee::all();
 
         //return $products;
 
@@ -257,7 +259,7 @@ class AdvertController extends Controller
 
         }
 
-        return redirect()->back()->withErrors($validator)->withInput();
+            return redirect()->back()->with('error','Error occured, not saved');
 
 
 
@@ -342,10 +344,21 @@ class AdvertController extends Controller
             return redirect()->back()->with('error', 'Product must be in Level 3');
         }
 
+        if ($adverts->advertfee->id == 1) {
+                        
+                return redirect()->back()->with('error','Select a subscription plan');
+            
+            }
+
         $advertfee = Advertfee::all();
+
+        $tax = $adverts->advertfee->tax / 100;
+        $advCost = $adverts->advertfee->cost + $tax + $adverts->advertfee->charge;
+        $paystackCost = $advCost * 100;
+        $orderId = 'AG00'.str()->random(5);
 
         //return $products;
 
-        return view('payment.orderpage', compact('adverts', 'advertfee'));
+        return view('payment.orderpage', compact('adverts','advertfee','advCost','paystackCost','orderId'));
     }
 }

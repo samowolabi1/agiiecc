@@ -175,10 +175,12 @@
                                               <td style="border:0px;"><strong>Charges: </strong></td>
                                               <td style="border:0px;">{{$adverts->advertfee->charges ?? ''}}</td>
 
-                                              
+                                              @if($adverts->advertfee->id == 1)
                                               <td style="border:0px;">
                                                 <a href="#" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">Create / Change Subscription</a>
                                                 <i class="fab fa-view-f fa-fw"></i></td>  
+
+                                              @endif
                                             </tr>
                                         </table>                                
 
@@ -205,8 +207,12 @@
 
                                           <div class="row">
                                             <br>
-                                            <div class="col-md-6">                                            
+                                            <div class="col-md-6">  
+                                            @if($adverts->paid == 'NO')   
+                                                                                   
                                             <a href="{{route('admin.approve.advert',$adverts->id)}}" class="btn btn-info">Change Approval</a>
+
+                                            @endif
                                            
                                         </div>
 
@@ -229,8 +235,9 @@
                                         <hr>
                                         <br>
 
+                                        @if($adverts->paid == 'NO')
                                         <a href="{{route('admin.order.page',$adverts->id)}}" class="btn btn-primary">Create Payment Order</a>
-                                        
+                                        @endif
                                          
 
                                       </div>

@@ -13,6 +13,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RideController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\MapController;
 use Illuminate\Support\Facades\Route;
 use App\Helpers\Routes\RouteHelper;
 
@@ -34,6 +35,9 @@ use App\Helpers\Routes\RouteHelper;
 RouteHelper::includeRouteFiles(__DIR__ . '/web');
 
 
+Route::get('/mymap', [MapController::class, 'index']);
+
+Route::get('/locateme/{id}', [MapController::class, 'locateme']);
 
 
 

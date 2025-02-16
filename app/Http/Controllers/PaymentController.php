@@ -220,8 +220,8 @@ class PaymentController extends Controller
                             'description' => $request->reference,
                             'purpose' => $request->email
                         ]);
-
-                    $transaction = Transaction::create([
+                        
+                            $transaction = Transaction::create([
                             'user_id' => $request->user_id,
                             'advertfee_id' => $request->advertfee_id,
                             'company_id' => $advert->company_id,
@@ -247,6 +247,8 @@ class PaymentController extends Controller
                     $advert->paid = 'YES';
                     $advert->save();
 
+
+
                 try{
 
 
@@ -264,12 +266,26 @@ class PaymentController extends Controller
 
     public function handleGatewayCallback()
     {
-        $paymentDetails = Paystack::getPaymentData();
+                    
+                    $paymentDetails = Paystack::getPaymentData();
+                    
+                    $paymentDetails = Paystack::getPaymentData(); 
+               
+                  
+                    // $paymentDetails['data']['status'];
+                    // $paymentDetails['data']['amount'];
+                    // $paymentDetails['data']['channel'];
+                    // $paymentDetails['data']['customer']['email'];
+                    // $paymentDetails['data']['customer']['firstname'];
+                    // $paymentDetails['data']['reference'];
+        
+                    
+                    
+                    
 
-        dd($paymentDetails);
-        // Now you have the payment details,
-        // you can store the authorization_code in your db to allow for recurrent subscriptions
-        // you can then redirect or do whatever you want
+        //dd($paymentDetails);
+        
+        return redirect()->route('dashboard')->with('success', 'Your payment is succesfull');
     }
 
 

@@ -34,7 +34,8 @@ class AdvertController extends Controller
 
         $categories = Category::all();
 
-        $company = User::find(auth()->user->id())->company;
+        //return Auth::id();
+        $company = User::find(Auth::id())->company;
 
         return view('adverts.user_ads', compact('categories','company'));
         

@@ -143,7 +143,7 @@ popup.resumeTransaction(access_code)
 
                                                 <input type="hidden" name="advert_id" value="{{$adverts->id}}">
                                                 <input type="hidden" name="advertfee_id" value="{{$adverts->advertfee->id}}">
-                                                <input type="hidden" name="product_id" value="{{$adverts->product->id}}">
+                                                <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 <input type="hidden" name="user_id" value="{{$adverts->user->id}}">
 
                                                 <p>
@@ -178,7 +178,7 @@ popup.resumeTransaction(access_code)
 
                                                  <tr>
                                                   <td style="border:0px;"><strong>Product Name: </strong></td>
-                                                  <td style="border:0px;">{{$adverts->product->name ?? ''}}</td>
+                                                  <td style="border:0px;">{{$product->name ?? ''}}</td>
 
 
                                                   <td style="border:0px;"><strong>Approval: </strong></td>

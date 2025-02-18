@@ -339,6 +339,9 @@ class AdvertController extends Controller
     public function order_page($id)
     {
         $adverts = Advert::find($id);
+        $product = Product::where('advert_id',$adverts->id)->first();
+
+        return $product;
 
         if ($adverts->level != 'LEVEL 3') {
 
@@ -360,6 +363,6 @@ class AdvertController extends Controller
 
         //return $products;
 
-        return view('payment.orderpage', compact('adverts','advertfee','advCost','paystackCost','orderId'));
+        return view('payment.orderpage', compact('adverts','advertfee','advCost','paystackCost','orderId','product'));
     }
 }
